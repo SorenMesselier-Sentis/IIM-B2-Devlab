@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+<h1>Edit ton profil</h1>
+{{ form_start(EditUserForm) }}
+    {{ form_row(EditUserForm.name) }}
+    {{ form_row(EditUserForm.surname) }}
+    {{ form_row(EditUserForm.grade) }}
+    {{ form_row(EditUserForm.git) }}
+{{ form_end(EditUserForm) }}
+{% endblock %}
