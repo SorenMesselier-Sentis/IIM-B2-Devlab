@@ -22,7 +22,6 @@ class RegistrationFormType extends AbstractType
             ->add('surname')
             ->add('grade')
             ->add('git')
-            ->add('isAsso')
             ->add('picture')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,

@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+<h1>Ton Profil</h1>
+<a href="{{ path('app_user_profile_edit', {id:app.user.id}) }}">Edit ton profil</a>
+
+{% endblock %}
