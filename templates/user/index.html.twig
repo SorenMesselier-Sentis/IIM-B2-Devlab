@@ -7,6 +7,8 @@
 
 {% for user in users %}
     <p>{{ user.name }}</p>
+    {# target le bon lien pour chaque profils #}
+    {# <a href="{{ path('app_user_profile', {id:app.user.id}) }}">Profil de {{ user.name }}</a> #}
 {% endfor %}
 
 {% endblock %}

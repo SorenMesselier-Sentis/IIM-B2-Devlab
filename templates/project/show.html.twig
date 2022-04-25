@@ -6,6 +6,8 @@
 {% block body %}
 	<h1>{{ project.title }}</h1>
 	<p>{{ project.description }}</p>
+	<p>Fait par {{ project.userId }}</p>
+	<img src="{{ asset(project.picture) }}" alt="">
 	{% if project.urlGit != null %}
 		<a href="{{ project.urlGit }}" target="_blank">Git du projet</a>
 	{% endif %}
