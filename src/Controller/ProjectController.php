@@ -5,8 +5,9 @@ namespace App\Controller;
 use App\Entity\Project;
 use App\Entity\Comments;
 use App\Form\CommentFormType;
-use App\Repository\CommentsRepository;
+use App\Form\ProjectFormType;
 use App\Repository\ProjectRepository;
+use App\Repository\CommentsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,6 +46,26 @@ class ProjectController extends AbstractController
             'project' => $project,
             'commentForm' => $form->createView(),
             'comments' => $comments,
+        ]);
+    }
+
+    #[Route('/project/{id}/newProject', name: 'app_project_new')]
+    public function new(Request $request, EntityManagerInterface $manager): Response
+    {
+        $project = new Project();
+        $form = $this->createForm(ProjectFormType::class, $project);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($project);
+            $manager->flush();
+
+            return $this->redirectToRoute('app_project', [], 200);
+        }
+
+        return $this->render('project/new.html.twig', [
+            'project' => $project,
+            'projectFormNew' => $form,
         ]);
     }
 }

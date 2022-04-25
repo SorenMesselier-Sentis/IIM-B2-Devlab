@@ -7,6 +7,11 @@
 
 {% for project in projects %}
     <p>{{ project.title }}</p>
+    <p>{{ project.description }}</p>
+    <p>{{ project.userid }}</p>
+    <p>{{ project.createdAt | date('Y/m/d') }}</p>
+    <img src="{{ asset(project.picture) }}" alt="">
+{# Ajout de collabo au projet si projet de grp #}
     <a href="{{ path('app_project_show', {id: project.id}) }}">Voir le Projet</a>
 {% endfor %}
 

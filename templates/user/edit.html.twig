@@ -10,4 +10,8 @@
     {{ form_row(EditUserForm.grade) }}
     {{ form_row(EditUserForm.git) }}
 {{ form_end(EditUserForm) }}
+
+{% if app.user %}
+    <a href="{{ path('app_project_new', {id: app.user.id}) }}">Ajouter un projet</a>
+{% endif %}
 {% endblock %}
