@@ -46,13 +46,21 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::section('Gestion utilisateur');
-        yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
-        yield MenuItem::section('Contenu');
-        yield MenuItem::linkToCrud('News', 'fas fa-newspaper', News::class);
-        yield MenuItem::linkToCrud('Commentaires', 'fas fa-comment', Comments::class);
-        yield MenuItem::linkToCrud('Projets', 'fas fa-list', Project::class);
-        yield MenuItem::linkToCrud('Technos', 'fas fa-book', Technos::class);
+        return [
+            MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
+            MenuItem::section('Contenu'),
+            MenuItem::linkToCrud('News', 'fas fa-newspaper', News::class),
+            MenuItem::linkToCrud('Technos', 'fas fa-book', Technos::class),
+
+            MenuItem::section('Moderations'),
+            MenuItem::linkToCrud('Commentaires', 'fas fa-comment', Comments::class),
+            MenuItem::linkToCrud('Projets', 'fas fa-list', Project::class),
+            
+            MenuItem::section('Gestion utilisateur'),
+            MenuItem::linkToCrud('Users', 'fas fa-users', User::class),
+            MenuItem::section('Other'),
+            MenuItem::linkToLogout('Logout', 'fa fa-sign-out'),
+            Menuitem::linkToRoute('Back To web site', 'fas fa-exchange', 'app_home'),
+        ];
     }
 }
