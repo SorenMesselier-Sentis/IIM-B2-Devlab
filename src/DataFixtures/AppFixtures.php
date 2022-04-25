@@ -54,6 +54,8 @@ class AppFixtures extends Fixture
             $project->setTitle('Project n\'' . $i);
             $project->setPicture('https://via.placeholder.com/350x150');
             $project->addTechno($techp[random_int(0,8)]);
+            $project->setUrlGit(rand(0, 1) == 0 ? 'https://github.com/GrandEmpereur/ArchiveDW' : null);
+            $project->setUrlVideo(rand(0, 1) == 0 ? 'https://youtu.be/AEqX50wJjYg' : null);
             $project->setDescription('Description n\'' . $i);
             $project->setUserId($users[rand(0, count($users) - 1)]);
             $manager->persist($project);
