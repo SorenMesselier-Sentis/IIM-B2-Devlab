@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\ProjectRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Comments;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ProjectRepository;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
 class Project
@@ -31,18 +33,21 @@ class Project
     #[ORM\OneToMany(mappedBy: 'project_id', targetEntity: Comments::class)]
     private $comments;
 
-    #[ORM\Column(type: 'array', nullable: true)]
-    private $technos = [];
-
     #[ORM\Column(type: 'datetime_immutable')]
+    #[Gedmo\Timestampable(on:"create")]
     private $created_at;
 
     #[ORM\Column(type: 'datetime')]
+    #[Gedmo\Timestampable(on:"update")]
     private $updated_at;
+
+    #[ORM\ManyToMany(targetEntity: technos::class, inversedBy: 'projects')]
+    private $technos;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->technos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -128,18 +133,6 @@ class Project
         return $this;
     }
 
-    public function getTechnos(): ?array
-    {
-        return $this->technos;
-    }
-
-    public function setTechnos(?array $technos): self
-    {
-        $this->technos = $technos;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->created_at;
@@ -160,6 +153,30 @@ class Project
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, technos>
+     */
+    public function getTechnos(): Collection
+    {
+        return $this->technos;
+    }
+
+    public function addTechno(technos $techno): self
+    {
+        if (!$this->technos->contains($techno)) {
+            $this->technos[] = $techno;
+        }
+
+        return $this;
+    }
+
+    public function removeTechno(technos $techno): self
+    {
+        $this->technos->removeElement($techno);
 
         return $this;
     }

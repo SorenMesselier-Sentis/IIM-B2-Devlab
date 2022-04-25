@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\NewsRepository;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: NewsRepository::class)]
@@ -26,9 +27,11 @@ class News
     private $url;
 
     #[ORM\Column(type: 'datetime_immutable')]
+    #[Gedmo\Timestampable(on:"create")]
     private $created_at;
 
     #[ORM\Column(type: 'datetime')]
+    #[Gedmo\Timestampable(on:"update")]
     private $updated_at;
 
     public function getId(): ?int
