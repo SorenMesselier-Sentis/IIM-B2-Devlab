@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CommentsRepository;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CommentsRepository::class)]
@@ -20,9 +21,11 @@ class Comments
     private $project_id;
 
     #[ORM\Column(type: 'datetime_immutable')]
+    #[Gedmo\Timestampable(on:"create")]
     private $created_at;
 
     #[ORM\Column(type: 'datetime')]
+    #[Gedmo\Timestampable(on:"update")]
     private $updated_at;
 
     #[ORM\Column(type: 'string', length: 255)]
