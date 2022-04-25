@@ -41,7 +41,7 @@ class Project
     #[Gedmo\Timestampable(on:"update")]
     private $updated_at;
 
-    #[ORM\ManyToMany(targetEntity: technos::class, inversedBy: 'projects')]
+    #[ORM\ManyToMany(targetEntity: Technos::class, inversedBy: 'projects')]
     private $technos;
 
     public function __construct()
@@ -179,5 +179,10 @@ class Project
         $this->technos->removeElement($techno);
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->id;
     }
 }
