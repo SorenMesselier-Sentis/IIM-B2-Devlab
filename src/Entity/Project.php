@@ -44,6 +44,12 @@ class Project
     #[ORM\ManyToMany(targetEntity: Technos::class, inversedBy: 'projects')]
     private $technos;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $url_git;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $url_video;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -184,5 +190,29 @@ class Project
     public function __toString()
     {
         return $this->id;
+    }
+
+    public function getUrlGit(): ?string
+    {
+        return $this->url_git;
+    }
+
+    public function setUrlGit(?string $url_git): self
+    {
+        $this->url_git = $url_git;
+
+        return $this;
+    }
+
+    public function getUrlVideo(): ?string
+    {
+        return $this->url_video;
+    }
+
+    public function setUrlVideo(?string $url_video): self
+    {
+        $this->url_video = $url_video;
+
+        return $this;
     }
 }
