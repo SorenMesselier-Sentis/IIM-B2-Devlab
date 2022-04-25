@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProjectController!{% endblock %}
+
+{% block body %}
+<h1>Les Projets</h1>
+
+{% for project in projects %}
+    <p>{{ project.title }}</p>
+    <a href="{{ path('app_project_show', {id: project.id}) }}">Voir le Projet</a>
+{% endfor %}
+
+{% endblock %}
