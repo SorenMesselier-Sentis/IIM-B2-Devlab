@@ -6,7 +6,7 @@ use App\Entity\Project;
 use App\Entity\Comments;
 use App\Entity\User;
 use App\Form\CommentFormType;
-use App\Form\ProjectFormType;   
+use App\Form\ProjectFormType;
 use App\Repository\ProjectRepository;
 use App\Repository\CommentsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,12 +27,13 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/project/{id}', name: 'app_project_show')]
-    public function show(Request $request, Project $project, EntityManagerInterface $manager, CommentsRepository $commentsRepository, User $user): Response
+    public function show(Request $request, Project $project, EntityManagerInterface $manager, CommentsRepository $commentsRepository, ProjectRepository $projectRepository, $id): Response
     {
         $comments = $commentsRepository->findBy(['project_id' => $project]);
         $comment = new Comments();
         $form = $this->createForm(CommentFormType::class, $comment);
         $form->handleRequest($request);
+        $project = $projectRepository->find($id);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setProjectId($project);
@@ -47,7 +48,6 @@ class ProjectController extends AbstractController
             'project' => $project,
             'commentForm' => $form->createView(),
             'comments' => $comments,
-            'user' => $user
         ]);
     }
 
@@ -64,7 +64,7 @@ class ProjectController extends AbstractController
             $manager->persist($project);
             $manager->flush();
 
-            return $this->redirectToRoute('app_project');
+            return $this->redirectToRoute('app_project', [], 200);
         }
 
         return $this->renderForm('project/new.html.twig', [
@@ -74,12 +74,12 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/project/{id}/delete', name: 'app_project_delete')]
-    public function delete(Request $request, Project $project, EntityManagerInterface $manager): Response
+    public function delete(Project $project, EntityManagerInterface $manager, $id): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
-            $manager->remove($project);
-            $manager->flush();
-        }
-        return $this->redirectToRoute('app_user_profile');
+        $project->getId();
+        $manager->remove($project);
+        $manager->flush();
+
+        return $this->redirectToRoute('app_user_profile', ['id' => $id]);
     }
 }
