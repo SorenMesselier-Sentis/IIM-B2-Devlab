@@ -29,8 +29,15 @@ class UserCrudController extends AbstractCrudController
         return [
             IdField::new('id')->setDisabled(),
             TextField::new('name'),
-
             TextField::new('surname'),
+            ImageField::new('avatar')
+            ->setUploadDir('/public/uploads/user/avatar')
+            ->setUploadedFileNamePattern('/uploads/user/avatar/[randomhash].[extension]')
+            ->setFormTypeOptions([
+                'attr' => [
+                    'accept' => 'image/jpeg, image/png, image/jpg'
+                ]
+            ]),
             ArrayField::new('roles'),
             EmailField::new('email'),
             UrlField::new('git'),
@@ -43,6 +50,7 @@ class UserCrudController extends AbstractCrudController
                     'accept' => 'image/jpeg, image/png, image/jpg'
                 ]
             ]),
+            
         ];
     }
 
