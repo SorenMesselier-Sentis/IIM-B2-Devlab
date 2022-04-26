@@ -1,16 +1,25 @@
 <nav>
-	<div class="content">
-		<a href="{{ path('app_home')}}">Accueil</a>
-		<ul class='nav-links'>
-			<li><a href="{{ path('app_users') }}">Utilisateurs</a></li>
-			<li><a href="{{ path('app_project') }}">Les Projets</a></li>
-			{% if app.user %}
-				<li><a href="{{ path('app_user_profile', {id:app.user.id}) }}">Ton Profil</a></li>
-				<li><a href="{{ path('app_logout') }}">Se deconnecter</a></li>
-				{% else %}
-				<li><a href="{{ path('app_login') }}">Connectes-toi</a></li>
-				<li><a href="{{ path('app_register') }}">Inscris-toi</a></li>
-			{% endif %}
+	<header>
+		<ul class="main-nav">
+			<img class="cid-logo" src="/assets/logo/cid_logo.png">
+			<li><a href="{{ path('app_home')}}">Accueil</a></li>
+			<li><a href="{{ path('app_users') }}">Membres</a></li>
+			<li><a href="{{ path('app_project') }}">Projets</a></li>
+			<li><a href="#">Faq</a></li>
 		</ul>
-	</div>
+		<details>
+			<summary><img id="profileLogo" src="/assets/logo/profile.png" alt="logo for user"></summary>
+			{% if app.user %}
+				<div>
+					<a href="{{ path('app_user_profile', {id:app.user.id}) }}">Profil</a>
+					<a href="{{ path('app_logout') }}">Déconnexion</a>
+				</div>
+			{% else %}
+				<div>
+					<a href="{{ path('app_login') }}">Connexion</a>
+					<a href="{{ path('app_register') }}">Inscription</a>
+				</div>
+			{% endif %}
+		</details>
+	</header>
 </nav>
