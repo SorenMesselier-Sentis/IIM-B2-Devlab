@@ -55,6 +55,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::section('Moderations'),
             MenuItem::linkToCrud('Commentaires', 'fas fa-comment', Comments::class),
             MenuItem::linkToCrud('Projets', 'fas fa-list', Project::class),
+            // MenuItem::linkToCrud('Bug Report', 'fas fa-users', Bug::class),
             
             MenuItem::section('Gestion utilisateur'),
             MenuItem::linkToCrud('Users', 'fas fa-users', User::class),

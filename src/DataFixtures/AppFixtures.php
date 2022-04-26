@@ -21,6 +21,22 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
 
+        for ($i = 1; $i <= 1; $i++) {
+            $user = new User();
+            $user->setEmail('user'. $i .'@gmail.com');
+            $user->setRoles(['ROLE_USER']);
+            $user->setPassword($this->hasher->hashPassword($user, '12345678'));
+            $user->setName('name');
+            $user->setSurname('admin');
+            $user->setGrade(2);
+            $user->setGit('AdminGit');
+            $user->setIsAsso(false);
+            $user->setPicture('https://imgs.search.brave.com/EIdR8VhIG5QkCDwoJ6lkYLXtebBigMcrhvc0OXh7Ze0/rs:fit:800:800:1/g:ce/aHR0cHM6Ly9tYXBo/b3RvcG9ydHJhaXQu/ZnIvOTE5LXRoaWNr/Ym94X2RlZmF1bHQv/cGhvdG8tcmV1c3Np/ZS1kZS1wcm9maWwt/bGlua2VkaW4uanBn');
+
+            $manager->persist($user);
+        }
+        $manager->flush();
+        
         // Create users
         for ($i = 1; $i <= 10; $i++) {
             $user = new User();
