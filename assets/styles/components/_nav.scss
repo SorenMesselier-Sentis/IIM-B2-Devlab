@@ -1,0 +1,50 @@
+nav {
+  padding: 1.5em;
+}
+
+header, .main-nav {
+  @include flex-row;
+  @include center-align;
+  justify-content: space-around;
+
+  details {
+    summary {
+      list-style-image: url("/public/assets/logo/arrow-down-bold.svg");
+    }
+    &[open]{
+      z-index: 1;
+      li {
+        padding: 1em;
+        background-color: $c--black;
+        a {
+          color: $c--white;
+          &:hover {
+            color: $c--primary;
+          }
+        }
+      }
+    }
+  }
+}
+
+.cid-logo {
+  width: 44px;
+  height: 33px;
+  margin-bottom: 8px;
+}
+
+#profileLogo {
+  width: 20px;
+}
+
+.main-nav {
+  gap: 35px;
+  a {
+    &:after {
+      content: ".";
+    }
+    &:hover {
+      color: $c--primary;
+    }
+  }
+}

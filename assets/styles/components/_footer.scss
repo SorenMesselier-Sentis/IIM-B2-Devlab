@@ -1,0 +1,61 @@
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  padding: 2em;
+  @include flex-row;
+  @include center-align;
+  justify-content: space-around;
+  background-color: $c--black;
+
+  a,p,h5 {
+    color: $c--white;
+  }
+
+}
+
+.main-footer {
+  gap: 20px;
+
+  h5 {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+  .footer-links {
+    @include flex-row;
+    @include center-align;
+    gap: 20px;
+    width: 100%;
+
+    p,a {
+      font-size: 12px;
+    }
+
+    a {
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+
+    span {
+      color: $c--primary;
+    }
+
+  }
+}
+
+.footer-socials {
+  @include flex-center-align;
+  gap: 20px;
+
+  img {
+    cursor: pointer;
+    width: 20px;
+    height: fit-content;
+
+    &:hover {
+      fill: $c--primary;
+    }
+  }
+}
+
