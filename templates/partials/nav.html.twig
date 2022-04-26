@@ -4,6 +4,7 @@
 		<ul class='nav-links'>
 			<li><a href="{{ path('app_users') }}">Utilisateurs</a></li>
 			<li><a href="{{ path('app_project') }}">Les Projets</a></li>
+			<li><a href="{{ path('app_bug_report') }}">Bug Report</a></li>
 			{% if app.user %}
 				<li><a href="{{ path('app_user_profile', {id:app.user.id}) }}">Ton Profil</a></li>
 				<li><a href="{{ path('app_logout') }}">Se deconnecter</a></li>

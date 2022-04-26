@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BugReportController!{% endblock %}
+
+{% block body %}
+
+<h2>Send Bug Report</h2>
+	{{ form(bugReportForm) }}
+		<a href="{{ path('app_home') }}">Retourner au site</a>
+{% endblock %}

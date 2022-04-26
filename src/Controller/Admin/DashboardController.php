@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Entity\Project;
 use App\Entity\Technos;
 use App\Entity\Comments;
+use App\Entity\BugReport;
 use App\Controller\Admin\UserCrudController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -57,7 +58,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::section('Moderations'),
             MenuItem::linkToCrud('Commentaires', 'fas fa-comment', Comments::class),
             MenuItem::linkToCrud('Projets', 'fas fa-list', Project::class),
-            // MenuItem::linkToCrud('Bug Report', 'fas fa-users', Bug::class),
+            MenuItem::linkToCrud('Bug Reports', 'fas fa-bug', BugReport::class),
             
             MenuItem::section('Gestion utilisateur'),
             MenuItem::linkToCrud('Users', 'fas fa-users', User::class),
