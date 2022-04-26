@@ -3,13 +3,13 @@
 {% block title %}Hello ProjectNew!{% endblock %}
 
 {% block body %}
-{# {{ form_start(projectFormNew) }}
+{{ form_start(projectFormNew) }}
     {{ form_row(projectFormNew.title) }}
     {{ form_row(projectFormNew.picture) }}
     {{ form_row(projectFormNew.description) }}
-    {{ form_row(projectFormNew.urlGit) }}
-    {{ form_row(projectFormNew.urlVideo) }}
+    {{ form_row(projectFormNew.url_git) }}
+    {{ form_row(projectFormNew.url_video) }}
     {{ form_row(projectFormNew.technos) }}
-{{ form_end(projectFormNew) }} #}
+{{ form_end(projectFormNew) }}
 	<a href="{{ path('app_user_profile', {id:app.user.id}) }}">Retourner au profil</a>
 {% endblock %}
