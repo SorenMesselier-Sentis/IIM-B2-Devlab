@@ -1,5 +1,6 @@
 nav {
-  padding: 1.5em;
+  padding: 0.5em;
+  height: 90px;
 }
 
 .main-nav {
@@ -18,12 +19,6 @@ header, .main-nav {
   @include flex-row;
   @include center-align;
   justify-content: space-around;
-}
-
-.cid-logo {
-  width: 44px;
-  height: 33px;
-  margin-bottom: 8px;
 }
 
 .nav-profile {
