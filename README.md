@@ -25,9 +25,12 @@ let's find out ! 😮
 
 ### Features
 
-- share fairly the bill between customers 
-- select the exact products you want to pay
-- block the last customer to pay if there is products left in the order.
+- Register yourself on the webapp
+- upload your projects on the platform
+- get comments and feedback by all students and visitors with commentaries !
+- get all the latest news about the tech world and the school !
+- create yourself a profile and get reached out !
+- and more to come ! 👀 
 
 ## Techs
 
