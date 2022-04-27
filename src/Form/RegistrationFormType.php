@@ -3,19 +3,9 @@
 namespace App\Form;
 
 use App\Entity\User;
-
-use Doctrine\DBAL\Types\ArrayType;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\ChoiceList\Factory\Cache\GroupBy;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-
 use App\Validator\Insult;
-use Symfony\Component\Form\AbstractType;
-
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -23,11 +13,9 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
@@ -52,13 +40,14 @@ class RegistrationFormType extends AbstractType
 
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-
+            ])
 
             ->add('surname', TextType::class, [
                 'label' => 'Surname',
                 'attr' => [
                     'placeholder' => 'Surname',
                 ],
+
                 'constraints' => [
                     new Insult(/*[
                         'message' => 'This field contains offensive term.'
