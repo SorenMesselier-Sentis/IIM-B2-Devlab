@@ -3,7 +3,56 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <div>
-        <h1>Welcome</h1>
+    <div class="header-home">
+        <h1 class="title head">Welcome</h1>
+    </div>
+    <div class="container-cards">
+        <!-- replace by a for loop to get projects from database -->
+        <div class="cards">
+            <div class="card-wrapper">
+                <h3 class="title sub">By Sorange</h3>
+                <div class="img-card"></div>
+            </div>
+            <div class="card-wrapper">
+                <h3 class="title sub">By Sorange</h3>
+                <div class="img-card"></div>
+            </div>
+            <div class="card-wrapper">
+                <h3 class="title sub">By Sorange</h3>
+                <div class="img-card"></div>
+            </div>
+            <!--- end loop-->
+        </div>
+        <a class="btn" href="">go to projects</a>
+    </div>
+    <div class="border"></div>
+    <div class="container-origins">
+        <div class="content-origins">
+            <p class="presentation-text">
+                is a global platform for all the students
+                who would like to upload their projects.
+                The goal is to create a global place to centralize them.
+            </p>
+            <p>Want to know more about us ?</p>
+            <a class="btn" href="#">go to faq</a>
+        </div>
+        <img class="cid-logo-home" src="{{ asset('assets/logo/cid_logo.png') }}" alt="logo cid">
+    </div>
+    <div class="container-cards dark">
+        <h2 class="title sub">Latest News</h2>
+        <!-- replace by a for loop to get news from database -->
+        <div class="cards">
+            <div class="card-wrapper">
+                <div class="img-card"></div>
+            </div>
+            <div class="card-wrapper">
+                <div class="img-card"></div>
+            </div>
+            <div class="card-wrapper">
+                <div class="img-card"></div>
+            </div>
+        </div>
+        <!-- end loop -->
+        <a class="btn" href="#">go to news</a>
     </div>
 {% endblock %}

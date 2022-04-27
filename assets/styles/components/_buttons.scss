@@ -1,0 +1,14 @@
+.btn {
+  padding: 0.5em 1em;
+  width: fit-content;
+  border: 1px solid $c--black;
+  border-radius: 5px;
+  &:hover {
+    transition: ease-in 0.2s;
+    color: $c--primary;
+    background-color: $c--black;
+  }
+  &:after {
+    content: ".";
+  }
+}

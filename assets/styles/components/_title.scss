@@ -1,0 +1,14 @@
+.title {
+  &:after {
+    content: ".";
+    color: $c--primary;
+  }
+}
+
+.head {
+  font-size: 48px;
+}
+
+.sub {
+  font-size: 32px;
+}

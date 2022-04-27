@@ -1,0 +1,107 @@
+.cid-logo-home {
+  width: 160px;
+  height: 120px;
+}
+
+.header-home {
+  padding: 1em;
+  @include flex-center-justify;
+}
+
+.container-cards {
+  @include flex-column;
+  @include center-align;
+
+  .cards {
+    @include flex-row;
+    gap: 25px;
+    .card-wrapper {
+      width: max-content;
+      .sub {
+        padding:0.2em 0;
+        font-size: 1.5em;
+        font-weight: 400;
+      }
+      .img-card {
+        width: 300px;
+        height: 340px;
+        border-radius: 10px;
+        background-color: $c--black;
+        margin-bottom: 55px;
+      }
+    }
+  }
+}
+
+.border {
+  padding: 2em;
+  margin: 0 auto;
+  width: 70%;
+  border-bottom: 1px solid $c--grey;
+}
+
+//who are we ?
+.container-origins {
+  @include flex-row;
+  @include center-align;
+  justify-content: space-around;
+  padding: 3em;
+  margin: 0 auto;
+  width: 70%;
+}
+
+.content-origins {
+  @include flex-column;
+  gap: 20px;
+}
+
+.presentation-text {
+  font-size: 20px;
+  width: 65%;
+  &:before {
+    content: "CID";
+    color: $c--primary;
+  }
+}
+
+.dark {
+  background-color: $c--black;
+  .title {
+    padding: 1em;
+    color: $c--white;
+  }
+  .cards {
+    .card-wrapper {
+      .img-card {
+        background-color: $c--white;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+
+  .container-origins {
+    width: 90%;
+    flex-direction: column-reverse;
+  }
+
+  .content-origins {
+    margin-top: 30px;
+    @include center-align;
+    text-align: center;
+  }
+
+  .presentation-text {
+    width: 100%;
+    text-align: justify;
+  }
+
+  .container-cards {
+    .cards {
+      @include flex-wrap;
+      @include center-justify;
+      gap: 10px;
+    }
+  }
+}
