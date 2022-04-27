@@ -8,6 +8,7 @@ use App\Entity\Comment;
 use App\Entity\Project;
 use App\Entity\Technos;
 use App\Entity\Comments;
+use App\Entity\Skill;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -21,9 +22,83 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
 
+        // skills fixtures
+        $Skill = [
+            // skills natif 
+            'HTML',
+            'CSS',
+            'JavaScript',
+            'PHP',
+            'python',
+            'C',
+            'C++',
+            'C#',
+            'Java',
+            'Ruby',
+
+            // skills framowrk 
+            'laravel',
+            'Symfony',
+            'Vue',
+            'React',
+            'Three.js',
+            'Node.js',
+            'Express',
+            'Angular',
+            'Django',
+            'Flask',
+            'Drupal',
+            'Wordpress',
+            'Ruby on Rails',
+            'CodeIgniter',
+            'Nuxt.js',
+            'Lumen',
+
+            // Skills db 
+            'MongoDB',
+            'MySQL',
+            'SQLite',
+            'PostgreSQL',
+            'SQL',
+            'MariaDB',
+            'Firebase',
+            'Firestore',
+            'Firebase Auth',
+            'Firebase Storage',
+            'Firebase Realtime Database',
+            'Firebase Cloud Functions',
+            'Firebase Hosting',
+
+            // Skills git
+            'Git',
+            'Linux',
+            'Docker',
+            'GitHub',
+            'GitLab',
+            'GitLab CI',
+            'GitLab Runner',
+        ];
+
+        foreach ($Skill as $label) {
+            $skill = new Skill();
+            $skill->setLabel($label);
+            $manager->persist($skill);
+        }
+        $manager->flush();
+
+        $userSkills = $manager->getRepository(Skill::class)->findAll();
+
+        // users fixtures
         // Create users
+
         for ($i = 1; $i <= 10; $i++) {
             $user = new User();
+
+            // add skills 
+            $user->addSkill($userSkills[rand(0, count($userSkills) - 1)]);
+            $user->addSkill($userSkills[rand(0, count($userSkills) - 1)]);
+            $user->addSkill($userSkills[rand(0, count($userSkills) - 1)]);
+
             $user->setEmail('admin'. $i .'@gmail.com');
             $user->setRoles(['ROLE_ADMIN']);
             $user->setPassword($this->hasher->hashPassword($user, '12345678'));
@@ -38,22 +113,33 @@ class AppFixtures extends Fixture
         }
         $manager->flush();
         
-        $technos = ['HTML', 'SCSS', 'VUEJS', 'SYMFONY', 'REACT', 'JAVASCRIPT', 'SWIFT', 'NODEJS', 'LARAVEL'];
+        $technos = [
+            'HTML', 
+            'SCSS', 
+            'VUEJS', 
+            'SYMFONY', 
+            'REACT', 
+            'JAVASCRIPT', 
+            'SWIFT', 
+            'NODEJS', 
+            'LARAVEL'
+        ];
+
         foreach ($technos as $techno) {
             $tech = new Technos();
             $tech->setLabel($techno);
             $manager->persist($tech);
         }
         $manager->flush();
+
         $techp = $manager->getRepository(Technos::class)->findAll();
-        
         $users = $manager->getRepository(User::class)->findAll();
         
         for ($i = 1; $i <= 10; $i++) {
             $project = new Project();
             $project->setTitle('Project n\'' . $i);
             $project->setPicture('https://via.placeholder.com/350x150');
-            $project->addTechno($techp[random_int(0,8)]);
+            $project->addTechno($techp[rand(0, count($techp) - 1)]);
             $project->setUrlGit(rand(0, 1) == 0 ? 'https://github.com/GrandEmpereur/ArchiveDW' : null);
             $project->setUrlVideo(rand(0, 1) == 0 ? 'https://youtu.be/AEqX50wJjYg' : null);
             $project->setDescription('Description n\'' . $i);
