@@ -41,7 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $git;
 
     #[ORM\Column(type: 'boolean')]
-    private $isAsso;
+    private $isAsso = false;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $picture;
