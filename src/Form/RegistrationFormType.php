@@ -3,8 +3,19 @@
 namespace App\Form;
 
 use App\Entity\User;
+
+use Doctrine\DBAL\Types\ArrayType;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\ChoiceList\Factory\Cache\GroupBy;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+
 use App\Validator\Insult;
 use Symfony\Component\Form\AbstractType;
+
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -26,20 +37,22 @@ class RegistrationFormType extends AbstractType
     {
         $builder
 
-            ->add('name', TextType::class, [
-                'label' => 'Name',
-                'attr' => [
-                    'placeholder' => 'Name',
-                ],
-                'constraints' => [
-                    new Insult(/*[
-                        'message' => 'This field contains offensive term.'
-                    ]*/),
-                    new NotBlank([
-                        'message' => 'Please enter a name',
-                    ]),
-                ],
+            ->add('email')
+            ->add('name')
+            ->add('surname')
+            ->add('grade')
+            ->add('git')
+            ->add('picture')
+
+            ->add('skills', EntityType::class, [
+                'class' => 'App\Entity\Skill',
+                'multiple' => true,
+                'expanded' => false,
             ])
+
+            ->add('agreeTerms', CheckboxType::class, [
+                'mapped' => false,
+
 
             ->add('surname', TextType::class, [
                 'label' => 'Surname',

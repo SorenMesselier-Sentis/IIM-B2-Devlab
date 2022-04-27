@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\EditUserFormType;
+use App\Repository\ProjectRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,6 +17,7 @@ class UserController extends AbstractController
     #[Route('/user', name: 'app_users')]
     public function index(UserRepository $userRepository): Response
     {
+
         $users = $userRepository->findAll();
         return $this->render('user/index.html.twig', [
             'users' => $users,
@@ -23,10 +25,25 @@ class UserController extends AbstractController
     }
     
     #[Route('/user/{id}', name: 'app_user_profile')]
-    public function show(): Response
+    public function show(UserRepository $userRepository, $id, ProjectRepository $projectRepository): Response
     {
-        return $this->render('user/show.html.twig', [
+        // find all user information 
+        $user = $userRepository->find($id);
 
+        // find all projects of the user
+        $projects = $user->getProjects();
+
+        // find all skills of the user
+        $skills = $user->getSkills();
+
+        // find all technos used on the projects
+        $technos = $projectRepository->findAll();
+
+        return $this->render('user/show.html.twig', [
+            'user' => $user,
+            'projects' => $projects,
+            'technos' => $technos,
+            'skills' => $skills,
         ]);
     }
 

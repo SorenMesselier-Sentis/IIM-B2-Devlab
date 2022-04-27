@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\TechnosRepository;
+use App\Repository\SkillRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: TechnosRepository::class)]
-class Technos
+#[ORM\Entity(repositoryClass: SkillRepository::class)]
+class Skill
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,12 +18,12 @@ class Technos
     #[ORM\Column(type: 'string', length: 255)]
     private $label;
 
-    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'technos')]
-    private $projects;
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'skills')]
+    private $users;
 
     public function __construct()
     {
-        $this->projects = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -44,33 +44,33 @@ class Technos
     }
 
     /**
-     * @return Collection<int, Project>
+     * @return Collection<int, User>
      */
-    public function getProjects(): Collection
+    public function getUsers(): Collection
     {
-        return $this->projects;
+        return $this->users;
     }
 
-    public function addProject(Project $project): self
+    public function addUser(User $user): self
     {
-        if (!$this->projects->contains($project)) {
-            $this->projects[] = $project;
-            $project->addTechno($this);
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addSkill($this);
         }
 
         return $this;
     }
 
-    public function removeProject(Project $project): self
+    public function removeUser(User $user): self
     {
-        if ($this->projects->removeElement($project)) {
-            $project->removeTechno($this);
+        if ($this->users->removeElement($user)) {
+            $user->removeSkill($this);
         }
 
         return $this;
     }
 
-    public function __toString(): String
+    public function __toString()
     {
         return $this->label;
     }

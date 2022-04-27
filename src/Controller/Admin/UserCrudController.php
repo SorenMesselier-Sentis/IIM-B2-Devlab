@@ -3,7 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+
+use Doctrine\DBAL\Types\TextType;
+
 use Symfony\Component\Validator\Constraints\Url;
+
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
@@ -15,6 +19,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -27,13 +34,17 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            // basic information 
+            FormField::addTab('Basic information'),
             IdField::new('id')->setDisabled(),
             TextField::new('name'),
             TextField::new('surname'),
-            ArrayField::new('roles'),
+            TextField::new('description')->hideOnIndex(),
             EmailField::new('email'),
+
             UrlField::new('git'),
             BooleanField::new('isAsso'),
+
             ImageField::new('picture')
             ->setBasePath('/uploads/user/avatar')
             ->setUploadDir('/public/uploads/user/avatar')
@@ -43,7 +54,24 @@ class UserCrudController extends AbstractCrudController
                     'accept' => 'image/jpeg, image/png, image/jpg'
                 ]
             ]),
+
+            AssociationField::new('skills')->hideOnIndex(),
+
+            // role section 
+            FormField::addTab('Role & Assosiation'),
+            ArrayField::new('roles'),
+            // asso 
+            BooleanField::new('isAsso'),
             
+            // social media section 
+            FormField::addTab ('Social media'),
+            UrlField::new('git')->hideOnIndex(),
+            UrlField::new('linkedin')->hideOnIndex(),
+            UrlField::new('twitter')->hideOnIndex(),
+            UrlField::new('dribbble')->hideOnIndex(),
+            UrlField::new('instagram')->hideOnIndex(),
+            UrlField::new('stackOverflow')->hideOnIndex(),
+
         ];
     }
 
