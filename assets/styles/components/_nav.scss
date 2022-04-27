@@ -2,41 +2,6 @@ nav {
   padding: 1.5em;
 }
 
-header, .main-nav {
-  @include flex-row;
-  @include center-align;
-  justify-content: space-around;
-
-  details {
-    summary {
-      list-style-image: url("/public/assets/logo/arrow-down-bold.svg");
-    }
-    &[open]{
-      z-index: 1;
-      li {
-        padding: 1em;
-        background-color: $c--black;
-        a {
-          color: $c--white;
-          &:hover {
-            color: $c--primary;
-          }
-        }
-      }
-    }
-  }
-}
-
-.cid-logo {
-  width: 44px;
-  height: 33px;
-  margin-bottom: 8px;
-}
-
-#profileLogo {
-  width: 20px;
-}
-
 .main-nav {
   gap: 35px;
   a {
@@ -46,5 +11,54 @@ header, .main-nav {
     &:hover {
       color: $c--primary;
     }
+  }
+}
+
+header, .main-nav {
+  @include flex-row;
+  @include center-align;
+  justify-content: space-around;
+}
+
+.cid-logo {
+  width: 44px;
+  height: 33px;
+  margin-bottom: 8px;
+}
+
+.nav-profile {
+  @include flex-row;
+  @include center-align;
+  gap: 20px;
+
+  img {
+    width: 20px;
+  }
+
+  ul {
+    border-radius: 5px;
+    padding: 0.5em;
+    background-color: $c--black;
+
+    li {
+      margin-bottom: 10px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    p,a {
+      color: $c--white;
+    }
+
+    a:hover {
+      color: $c--primary;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  nav {
+    display: none;
   }
 }

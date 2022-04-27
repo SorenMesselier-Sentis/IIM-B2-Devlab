@@ -1,0 +1,13 @@
+.main {
+  background-color: $c--white;
+  z-index: 2;
+  position: relative;
+  margin-bottom: 200px;
+}
+
+@media only screen and (max-width: 900px) {
+  .main {
+    z-index: unset;
+    margin-bottom: 0;
+  }
+}

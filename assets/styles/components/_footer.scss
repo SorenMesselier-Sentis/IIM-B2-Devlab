@@ -1,7 +1,8 @@
 footer {
-  width: 100%;
   position: fixed;
   bottom: 0;
+  width: 100%;
+  height: 200px;
   padding: 2em;
   @include flex-row;
   @include center-align;
@@ -55,6 +56,23 @@ footer {
 
     &:hover {
       fill: $c--primary;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  footer {
+    position: unset;
+    height: fit-content;
+    h5 {
+      text-align: center;
+    }
+    @include flex-column;
+    .main-footer {
+      .footer-links {
+        @include flex-column;
+        margin-bottom: 50px;
+      }
     }
   }
 }
