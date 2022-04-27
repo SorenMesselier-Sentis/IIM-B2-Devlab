@@ -21,10 +21,7 @@ class EditUserFormType extends AbstractType
             ->add('grade')
             ->add('git', TextType::class)
             // ->add('picture')
-            ->add('Envoyer', SubmitType::class, [
-                'attr' => ['class' => 'red-button red-b']
-            ])
-        ;
+            ->add('Envoyer', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

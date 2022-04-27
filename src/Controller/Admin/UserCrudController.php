@@ -3,8 +3,14 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+
 use Doctrine\DBAL\Types\TextType;
+
+use Symfony\Component\Validator\Constraints\Url;
+
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
@@ -35,14 +41,20 @@ class UserCrudController extends AbstractCrudController
             TextField::new('surname'),
             TextField::new('description')->hideOnIndex(),
             EmailField::new('email'),
+
+            UrlField::new('git'),
+            BooleanField::new('isAsso'),
+
             ImageField::new('picture')
-            ->setUploadDir('/public/uploads/user')
-            ->setUploadedFileNamePattern('/uploads/user/[randomhash].[extension]')
+            ->setBasePath('/uploads/user/avatar')
+            ->setUploadDir('/public/uploads/user/avatar')
+            ->setUploadedFileNamePattern('/uploads/user/avatar/[randomhash].[extension]')
             ->setFormTypeOptions([
                 'attr' => [
                     'accept' => 'image/jpeg, image/png, image/jpg'
                 ]
             ]),
+
             AssociationField::new('skills')->hideOnIndex(),
 
             // role section 
@@ -59,7 +71,19 @@ class UserCrudController extends AbstractCrudController
             UrlField::new('dribbble')->hideOnIndex(),
             UrlField::new('instagram')->hideOnIndex(),
             UrlField::new('stackOverflow')->hideOnIndex(),
+
         ];
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add('name')
+            ->add('surname')
+            ->add('email')
+            ->add('roles')
+            ->add('git')
+            ->add('isAsso');
     }
     
 }
