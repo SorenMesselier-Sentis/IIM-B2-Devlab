@@ -3,7 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use Symfony\Component\Validator\Constraints\Url;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
@@ -26,10 +29,11 @@ class UserCrudController extends AbstractCrudController
         return [
             IdField::new('id')->setDisabled(),
             TextField::new('name'),
+
             TextField::new('surname'),
             ArrayField::new('roles'),
             EmailField::new('email'),
-            IntegerField::new('git'),
+            UrlField::new('git'),
             BooleanField::new('isAsso'),
             ImageField::new('picture')
             ->setUploadDir('/public/uploads/user')
@@ -40,6 +44,18 @@ class UserCrudController extends AbstractCrudController
                 ]
             ]),
         ];
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add('name')
+            ->add('surname')
+            ->add('email')
+            ->add('roles')
+            ->add('git')
+            ->add('isAsso')
+            ->add('picture');
     }
     
 }

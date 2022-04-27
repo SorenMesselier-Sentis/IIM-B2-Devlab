@@ -1,20 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/coursA2/amour_de_axe/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/coursA2/amour_de_axe/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="header-home">
+        <h1 class="title head">Welcome</h1>
+    </div>
+    <div class="container-cards">
+        <!-- replace by a for loop to get projects from database -->
+        <div class="cards">
+            <div class="card-wrapper">
+                <h3 class="title sub">By Sorange</h3>
+                <div class="img-card"></div>
+            </div>
+            <div class="card-wrapper">
+                <h3 class="title sub">By Sorange</h3>
+                <div class="img-card"></div>
+            </div>
+            <div class="card-wrapper">
+                <h3 class="title sub">By Sorange</h3>
+                <div class="img-card"></div>
+            </div>
+            <!--- end loop-->
+        </div>
+        <a class="btn" href="">go to projects</a>
+    </div>
+    <div class="border"></div>
+    <div class="container-origins">
+        <div class="content-origins">
+            <p class="presentation-text">
+                is a global platform for all the students
+                who would like to upload their projects.
+                The goal is to create a global place to centralize them.
+            </p>
+            <p>Want to know more about us ?</p>
+            <a class="btn" href="#">go to faq</a>
+        </div>
+        <img class="cid-logo-home" src="{{ asset('assets/logo/cid_logo.png') }}" alt="logo cid">
+    </div>
+    <div class="container-cards dark">
+        <h2 class="title sub">Latest News</h2>
+        <!-- replace by a for loop to get news from database -->
+        <div class="cards">
+            <div class="card-wrapper">
+                <div class="img-card"></div>
+            </div>
+            <div class="card-wrapper">
+                <div class="img-card"></div>
+            </div>
+            <div class="card-wrapper">
+                <div class="img-card"></div>
+            </div>
+        </div>
+        <!-- end loop -->
+        <a class="btn" href="#">go to news</a>
+    </div>
 {% endblock %}

@@ -1,0 +1,64 @@
+nav {
+  padding: 1.5em;
+}
+
+.main-nav {
+  gap: 35px;
+  a {
+    &:after {
+      content: ".";
+    }
+    &:hover {
+      color: $c--primary;
+    }
+  }
+}
+
+header, .main-nav {
+  @include flex-row;
+  @include center-align;
+  justify-content: space-around;
+}
+
+.cid-logo {
+  width: 44px;
+  height: 33px;
+  margin-bottom: 8px;
+}
+
+.nav-profile {
+  @include flex-row;
+  @include center-align;
+  gap: 20px;
+
+  img {
+    width: 20px;
+  }
+
+  ul {
+    border-radius: 5px;
+    padding: 0.5em;
+    background-color: $c--black;
+
+    li {
+      margin-bottom: 10px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    p,a {
+      color: $c--white;
+    }
+
+    a:hover {
+      color: $c--primary;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  nav {
+    display: none;
+  }
+}
