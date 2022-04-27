@@ -4,6 +4,40 @@
 
 {% block body %}
 <h1>Ton Profil</h1>
+
+<h2>{{ user.name }}</h2>
+<h3> {{ user.surname }} </h3>
+<h4> {{ user.email }} </h4>
+<p>{{ user.git }}</p>
+<p>{{ user.isAsso }}</p>
+<img src="{{ user.picture }}" alt="">
+
+{# <p>{{ user.description }}</p> #}
+
+{# foreach #}
+<p>Skills</p>
+
+{# foreach #}
+<p>All Project</p>
+    {% for project in projects %}
+        
+        <div class="project" style="background-color: red" >
+            <p> {{ project.title }} </p>
+            <img src=" {{ project.picture }} " alt="">
+            <p> {{ project.description }} </p>
+        </div>
+        <a href="#">supprimer un project</a>
+        <a href="#">éditer un project</a>
+    {% endfor %}
+
+{# foreach #}
+<p>socials media</p>
+
+<p> All project collaborations</p>
+
 <a href="{{ path('app_user_profile_edit', {id:app.user.id}) }}">Edit ton profil</a>
+<a href="#">Publiée un project</a>
+
+<a href="#">supprimer son profils</a>
 
 {% endblock %}
