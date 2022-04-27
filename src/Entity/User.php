@@ -49,9 +49,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Project::class)]
     private $projects;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $Avatar;
-
     public function __construct()
     {
         $this->projects = new ArrayCollection();
@@ -232,17 +229,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString()
     {
         return $this->name;
-    }
-
-    public function getAvatar(): ?string
-    {
-        return $this->Avatar;
-    }
-
-    public function setAvatar(?string $Avatar): self
-    {
-        $this->Avatar = $Avatar;
-
-        return $this;
     }
 }
