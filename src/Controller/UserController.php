@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Project;
 use App\Entity\User;
 use App\Form\EditUserFormType;
 use App\Repository\ProjectRepository;
@@ -27,23 +28,12 @@ class UserController extends AbstractController
     #[Route('/user/{id}', name: 'app_user_profile')]
     public function show(UserRepository $userRepository, $id, ProjectRepository $projectRepository): Response
     {
-        // find all user information 
-        $user = $userRepository->find($id);
-
-        // find all projects of the user
-        $projects = $user->getProjects();
-
-        // find all skills of the user
-        $skills = $user->getSkills();
-
-        // find all technos used on the projects
-        $technos = $projectRepository->findAll();
-
+        // ProjectRepository $projectRepository, Project $project, $id
+        // $projects = $projectRepository->findBy(['project_id' => $project]);
+        // $project = $projectRepository->find($id);
         return $this->render('user/show.html.twig', [
-            'user' => $user,
-            'projects' => $projects,
-            'technos' => $technos,
-            'skills' => $skills,
+            // 'id' => $project->getId(),
+            // 'projects' => $projects,
         ]);
     }
 
