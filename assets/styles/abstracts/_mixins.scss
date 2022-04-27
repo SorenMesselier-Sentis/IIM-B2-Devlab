@@ -1,0 +1,54 @@
+//mixin position flex
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-wrap{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+//mixin for center with the flex property
+
+@mixin flex-center-justify {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flex-center-align {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-center-total {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-justify-space-around {
+  display: flex;
+  justify-content: space-around;
+}
+
+//mixin for center without the flex property
+
+@mixin center-justify {
+  justify-content: center;
+}
+
+@mixin center-align {
+  align-items: center;
+}
+
+@mixin center-total {
+  align-items: center;
+  justify-content: center;
+}
