@@ -14,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 
 class UserCrudController extends AbstractCrudController
@@ -28,10 +29,11 @@ class UserCrudController extends AbstractCrudController
     {
         return [
             // basic information 
+            FormField::addTab('Basic information'),
             IdField::new('id')->setDisabled(),
             TextField::new('name'),
             TextField::new('surname'),
-            TextField::new('description'),
+            TextField::new('description')->hideOnIndex(),
             EmailField::new('email'),
             ImageField::new('picture')
             ->setUploadDir('/public/uploads/user')
@@ -41,21 +43,22 @@ class UserCrudController extends AbstractCrudController
                     'accept' => 'image/jpeg, image/png, image/jpg'
                 ]
             ]),
-            AssociationField::new('skills'),
+            AssociationField::new('skills')->hideOnIndex(),
 
             // role section 
+            FormField::addTab('Role & Assosiation'),
             ArrayField::new('roles'),
-
             // asso 
             BooleanField::new('isAsso'),
             
             // social media section 
-            UrlField::new('git'),
-            UrlField::new('linkedin'),
-            UrlField::new('twitter'),
-            UrlField::new('dribbble'),
-            UrlField::new('instagram'),
-            UrlField::new('stackOverflow'),
+            FormField::addTab ('Social media'),
+            UrlField::new('git')->hideOnIndex(),
+            UrlField::new('linkedin')->hideOnIndex(),
+            UrlField::new('twitter')->hideOnIndex(),
+            UrlField::new('dribbble')->hideOnIndex(),
+            UrlField::new('instagram')->hideOnIndex(),
+            UrlField::new('stackOverflow')->hideOnIndex(),
         ];
     }
     
