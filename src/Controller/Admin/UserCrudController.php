@@ -35,6 +35,7 @@ class UserCrudController extends AbstractCrudController
             UrlField::new('git'),
             BooleanField::new('isAsso'),
             ImageField::new('picture')
+            ->setBasePath('/uploads/user/avatar')
             ->setUploadDir('/public/uploads/user/avatar')
             ->setUploadedFileNamePattern('/uploads/user/avatar/[randomhash].[extension]')
             ->setFormTypeOptions([
