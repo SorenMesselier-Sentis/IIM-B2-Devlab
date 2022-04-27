@@ -69,6 +69,11 @@ class AppFixtures extends Fixture
             'Firebase Cloud Functions',
             'Firebase Hosting',
 
+            // web 3.0
+            'Solidity',
+            'Ethereum',
+            'Truffle',
+
             // Skills git
             'Git',
             'Linux',
@@ -114,15 +119,64 @@ class AppFixtures extends Fixture
         $manager->flush();
         
         $technos = [
-            'HTML', 
-            'SCSS', 
-            'VUEJS', 
-            'SYMFONY', 
-            'REACT', 
-            'JAVASCRIPT', 
-            'SWIFT', 
-            'NODEJS', 
-            'LARAVEL'
+            // skills natif 
+            'HTML',
+            'CSS',
+            'JavaScript',
+            'PHP',
+            'python',
+            'C',
+            'C++',
+            'C#',
+            'Java',
+            'Ruby',
+
+            // skills framowrk 
+            'laravel',
+            'Symfony',
+            'Vue',
+            'React',
+            'Three.js',
+            'Node.js',
+            'Express',
+            'Angular',
+            'Django',
+            'Flask',
+            'Drupal',
+            'Wordpress',
+            'Ruby on Rails',
+            'CodeIgniter',
+            'Nuxt.js',
+            'Lumen',
+
+            // Skills db 
+            'MongoDB',
+            'MySQL',
+            'SQLite',
+            'PostgreSQL',
+            'SQL',
+            'MariaDB',
+            'Firebase',
+            'Firestore',
+            'Firebase Auth',
+            'Firebase Storage',
+            'Firebase Realtime Database',
+            'Firebase Cloud Functions',
+            'Firebase Hosting',
+
+            // web 3.0
+            'Solidity',
+            'Ethereum',
+            'Truffle',
+
+            // Skills git
+            'Git',
+            'Linux',
+            'Docker',
+            'GitHub',
+            'GitLab',
+            'GitLab CI',
+            'GitLab Runner',
         ];
 
         foreach ($technos as $techno) {
