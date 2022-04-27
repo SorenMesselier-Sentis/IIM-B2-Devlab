@@ -41,7 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $git;
 
     #[ORM\Column(type: 'boolean')]
-    private $isAsso;
+    private $isAsso = false;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $picture;
@@ -49,9 +49,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Project::class)]
     private $projects;
 
+    #[ORM\ManyToMany(targetEntity: Skill::class, inversedBy: 'users')]
+    private $skills;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $linkedin;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $instagram;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $twitter;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $dribbble;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $stackOverflow;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $description;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
+        $this->skills = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -229,5 +251,101 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection<int, Skill>
+     */
+    public function getSkills(): Collection
+    {
+        return $this->skills;
+    }
+
+    public function addSkill(Skill $skill): self
+    {
+        if (!$this->skills->contains($skill)) {
+            $this->skills[] = $skill;
+        }
+
+        return $this;
+    }
+
+    public function removeSkill(Skill $skill): self
+    {
+        $this->skills->removeElement($skill);
+
+        return $this;
+    }
+
+    public function getLinkedin(): ?string
+    {
+        return $this->linkedin;
+    }
+
+    public function setLinkedin(?string $linkedin): self
+    {
+        $this->linkedin = $linkedin;
+
+        return $this;
+    }
+
+    public function getInstagram(): ?string
+    {
+        return $this->instagram;
+    }
+
+    public function setInstagram(?string $instagram): self
+    {
+        $this->instagram = $instagram;
+
+        return $this;
+    }
+
+    public function getTwitter(): ?string
+    {
+        return $this->twitter;
+    }
+
+    public function setTwitter(?string $twitter): self
+    {
+        $this->twitter = $twitter;
+
+        return $this;
+    }
+
+    public function getDribbble(): ?string
+    {
+        return $this->dribbble;
+    }
+
+    public function setDribbble(?string $dribbble): self
+    {
+        $this->dribbble = $dribbble;
+
+        return $this;
+    }
+
+    public function getStackOverflow(): ?string
+    {
+        return $this->stackOverflow;
+    }
+
+    public function setStackOverflow(?string $stackOverflow): self
+    {
+        $this->stackOverflow = $stackOverflow;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
     }
 }

@@ -1,14 +1,19 @@
 <nav>
+
+	<div class="content">
+		<a href="{{ path('app_home')}}">Accueil</a>
 	<header>
 		<ul class="main-nav">
 			<img class="cid-logo" src="/assets/logo/cid_logo.png">
 			<li><a href="{{ path('app_home')}}">Accueil</a></li>
 			<li><a href="{{ path('app_users') }}">Membres</a></li>
 			<li><a href="{{ path('app_project') }}">Projets</a></li>
+      <li><a href="{{ path('app_bug_report') }}">Bug Report</a></li>
 			<li><a href="#">Faq</a></li>
 		</ul>
 		<details>
 			<summary><img id="profileLogo" src="/assets/logo/profile.png" alt="logo for user"></summary>
+      
 			{% if app.user %}
 				<div>
 					<a href="{{ path('app_user_profile', {id:app.user.id}) }}">Profil</a>

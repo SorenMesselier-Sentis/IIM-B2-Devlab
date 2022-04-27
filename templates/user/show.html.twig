@@ -4,6 +4,53 @@
 
 {% block body %}
 <h1>Ton Profil</h1>
+
+<h2>{{ user.name }}</h2>
+<h3> {{ user.surname }} </h3>
+<h4> {{ user.email }} </h4>
+<p>{{ user.isAsso }}</p>
+<img src="{{ user.picture }}" alt="">
+<p>{{ user.description }}</p>
+
+{# Twig section to see skills of the user  #}
+<p>Skills</p>
+{% for skill in user.skills %}
+    <p>{{ skill.label }}</p>
+{% endfor %}
+
+
+{# foreach #}
+<p>All Project</p>
+    {% for project in projects %}
+        
+        <div class="project" style="background-color: red" >
+            <p> {{ project.title }} and created at {{ project.CreatedAt | date("d/m/Y") }}</p>
+            <img src=" {{ project.picture }} " alt="">
+            <p> {{ project.description }} </p>
+
+        {% for techno in project.technos %}
+            <p> {{ techno.label }} </p>
+        {% endfor %}
+
+        </div>
+        <a href="#">supprimer un project</a>
+        <a href="#">éditer un project</a>
+    {% endfor %}
+
+{# foreach #}
+<p>socials media</p>
+<a href="{{  user.git }}">Git Hub</a>
+<a href="{{  user.linkedin }}">linkedin</a>
+<a href="{{  user.instagram }}">instagram</a>
+<a href="{{  user.twitter }}">twitter</a>
+<a href="{{  user.dribbble }}">dribbble</a>
+<a href="{{  user.stackOverflow }}">stackOverflow</a>
+
+<p> All project collaborations</p>
+
 <a href="{{ path('app_user_profile_edit', {id:app.user.id}) }}">Edit ton profil</a>
+<a href="#">Publiée un project</a>
+
+<a href="#">supprimer son profils</a>
 
 {% endblock %}

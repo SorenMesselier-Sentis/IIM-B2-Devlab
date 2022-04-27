@@ -18,6 +18,7 @@ class UserController extends AbstractController
     #[Route('/user', name: 'app_users')]
     public function index(UserRepository $userRepository): Response
     {
+
         $users = $userRepository->findAll();
         return $this->render('user/index.html.twig', [
             'users' => $users,
@@ -25,7 +26,7 @@ class UserController extends AbstractController
     }
     
     #[Route('/user/{id}', name: 'app_user_profile')]
-    public function show(): Response
+    public function show(UserRepository $userRepository, $id, ProjectRepository $projectRepository): Response
     {
         // ProjectRepository $projectRepository, Project $project, $id
         // $projects = $projectRepository->findBy(['project_id' => $project]);
