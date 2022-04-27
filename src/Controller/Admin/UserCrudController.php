@@ -29,20 +29,20 @@ class UserCrudController extends AbstractCrudController
         return [
             IdField::new('id')->setDisabled(),
             TextField::new('name'),
-
             TextField::new('surname'),
             ArrayField::new('roles'),
             EmailField::new('email'),
             UrlField::new('git'),
             BooleanField::new('isAsso'),
             ImageField::new('picture')
-            ->setUploadDir('/public/uploads/user')
-            ->setUploadedFileNamePattern('/uploads/user/[randomhash].[extension]')
+            ->setUploadDir('/public/uploads/user/avatar')
+            ->setUploadedFileNamePattern('/uploads/user/avatar/[randomhash].[extension]')
             ->setFormTypeOptions([
                 'attr' => [
                     'accept' => 'image/jpeg, image/png, image/jpg'
                 ]
             ]),
+            
         ];
     }
 
@@ -54,8 +54,7 @@ class UserCrudController extends AbstractCrudController
             ->add('email')
             ->add('roles')
             ->add('git')
-            ->add('isAsso')
-            ->add('picture');
+            ->add('isAsso');
     }
     
 }
