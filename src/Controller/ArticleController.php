@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\News;
 use App\Repository\NewsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,8 +22,11 @@ class ArticleController extends AbstractController
     public function show($id, NewsRepository $newsRepository): Response
     {
         $article = $newsRepository->find($id);
+        $articles = $newsRepository->findBy([], ['created_at' => 'DESC'], 3 );
+
         return $this->render('/article/show.html.twig', [
-            'article'=> $article
+            'article'=> $article,
+            'articles'=> $articles
         ]);
     }
 }

@@ -3,10 +3,23 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-    <div class="header-article">
-        <h1>{{ article.title }}</h1>
-    </div>
-    <div class="show-article-content">
-        <p>{{ article.description  }}</p>
+    <div class="article-wrapper">
+        <div class="header-article">
+            <h1 class="title head article">{{ article.title }}</h1>
+        </div>
+        <div class="show-article-content">
+            <p>{{ article.description }}</p>
+        </div>
+        <div class="other-articles">
+            <h3 class="read-more-articles">Read more articles</h3>
+            <div class="articles-cards">
+                {% for article in articles %}
+                    <div class="card-article">
+                        <p>{{ article.title }}</p>
+                        <a href="{{ path('app_article', {'id' : article.id}) }}"><img src="{{ asset('assets/logo/akar-icons_arrow-up.svg') }}" alt="arrow link"></a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}
