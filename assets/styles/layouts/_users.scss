@@ -1,0 +1,55 @@
+.main-users {
+  padding: 2em;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-users {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.user-cards {
+  @include flex-wrap;
+  @include center-justify;
+  gap: 40px;
+}
+
+.user-card {
+  padding: 1.5em;
+  background-color: #FFFFFF;
+  border-radius: 15px;
+  width: 45%;
+  @include flex-row;
+  gap: 25px;
+  img {
+    width: 150px;
+    border-radius: 50%;
+  }
+  div {
+    h4 {
+      margin-bottom: 10px;
+    }
+    padding: 0.5em;
+    p {
+      font-weight: bold;
+      color: $c--greySecondary;
+      margin-bottom: 25px;
+    }
+  }
+  &:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .user-card {
+    @include flex-column;
+    @include center-align;
+    width: 90%;
+    gap: 15px;
+    &:hover {
+      box-shadow: unset;
+    }
+  }
+}
