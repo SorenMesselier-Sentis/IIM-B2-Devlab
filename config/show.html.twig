@@ -14,10 +14,13 @@
 	{% if project.urlVideo != null %}
 		<a href="{{ project.urlVideo }}" target="_blank">Video du projet</a>
 	{% endif %}
-	<input type="file"> 
+	<input type="file">
 	{{ project.file}}
 	</input>
-{# nécessite un bouton evoyer #}
+	{% if project.userId.id == app.user.id %}
+		<a href="{{ path('app_project_delete', {id: project.id}) }}">Supprimer ton projet</a>
+	{% endif %}
+
 	<h2>Ajouter un Commentaire</h2> 
 	{{ form(commentForm) }}
 
