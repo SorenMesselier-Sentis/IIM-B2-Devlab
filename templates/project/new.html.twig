@@ -6,7 +6,7 @@
 <div class="form-bg">
     <div class="header-form">
         <h1 class="title head">ajoute ton projet !</h1>
-        <a class="btn" href="{{ path('app_user_profile', {id:app.user.id}) }}">Retourner au profil</a>
+        <a class="btn" href="{{ path('app', {id:app.user.id}) }}">Retourner au profil</a>
     </div>
     <div class="form create-project">
         {{ form_start(projectFormNew) }}

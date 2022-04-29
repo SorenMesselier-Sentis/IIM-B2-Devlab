@@ -25,8 +25,9 @@ class UserController extends AbstractController
             'users' => $users,
         ]);
     }
-    
-    public function show(User $user, $id, ProjectRepository $projectRepository): Response
+
+    #[Route('/user/{id}', name: 'app_user_profile')]
+    public function show(User $user, ProjectRepository $projectRepository): Response
     {
         $projects = $projectRepository->findBy(['user_id' => $user]);
         return $this->render('user/show.html.twig', [
