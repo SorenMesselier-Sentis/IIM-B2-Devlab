@@ -26,19 +26,16 @@ class UserController extends AbstractController
     }
     
     #[Route('/user/{id}', name: 'app_user_profile')]
-    public function show(UserRepository $userRepository, $id, ProjectRepository $projectRepository): Response
+    public function show(UserRepository $userRepository, $id): Response
     {
-        // ProjectRepository $projectRepository, Project $project, $id
-        // $projects = $projectRepository->findBy(['project_id' => $project]);
-        // $project = $projectRepository->find($id);
+        $user = $userRepository->find($id);
+        $projects = $user->getProjects();
         return $this->render('user/show.html.twig', [
-            // 'id' => $project->getId(),
-            // 'projects' => $projects,
+            'user' => $user,
+            'projects' => $projects,
         ]);
-    }
+    }    
 
-
-    
     #[Route('/user/{id}/edit', name: 'app_user_profile_edit')]
     public function edit(Request $request, User $user, EntityManagerInterface $manager): Response
     {
@@ -54,5 +51,14 @@ class UserController extends AbstractController
             'user' => $user,
             'EditUserForm' => $form,
         ]);
+    }
+
+    // delet user profile
+    #[Route('/user/{id}/delete', name: 'app_user_delete')]
+    public function deleteUser(User $user, EntityManagerInterface $manager): Response
+    {
+        $manager->remove($user);
+        $manager->flush();
+        return $this->redirectToRoute('app_home', [], 200);
     }
 }

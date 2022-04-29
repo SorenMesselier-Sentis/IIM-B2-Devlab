@@ -39,14 +39,9 @@ class UserCrudController extends AbstractCrudController
             BooleanField::new('isAsso'),
 
             ImageField::new('picture')
-            ->setBasePath('/uploads/user/avatar')
-            ->setUploadDir('/public/uploads/user/avatar')
-            ->setUploadedFileNamePattern('/uploads/user/avatar/[randomhash].[extension]')
-            ->setFormTypeOptions([
-                'attr' => [
-                    'accept' => 'image/jpeg, image/png, image/jpg'
-                ]
-            ]),
+            ->setBasePath('uploads/user/avatar')
+            ->setUploadDir('public/uploads/user/avatar/')
+            ->setUploadedFileNamePattern('[randomhash].[extension]'),
 
             AssociationField::new('skills')->hideOnIndex(),
 
