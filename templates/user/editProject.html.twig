@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+<h1>Edit ton project</h1>
+{{ form_start(EditeProjectType) }}
+    {{ form_row(EditeProjectType.title) }}
+    {{ form_row(EditeProjectType.description) }}
+    {{ form_row(EditeProjectType.picture) }}
+    {{ form_row(EditeProjectType.url_git) }}
+    {{ form_row(EditeProjectType.url_video) }}
+    {{ form_row(EditeProjectType.technos) }}
+    
+
+{{ form_end(EditeProjectType) }}
+
+<a href=" {{ path('app_project_delete', {id: app.user.id} ) }} ">supprimer ton project</a>
+<a href="{{ path('app_user_profile', {id: app.user.id}) }}">Retour </a>
+
+{% endblock %}
