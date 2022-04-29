@@ -4,27 +4,54 @@
 {% endblock %}
 
 {% block body %}
-	<h1>{{ project.title }}</h1>
-	<p>{{ project.description }}</p>
-	<p>Fait par {{ project.userId }}</p>
-	<img src="{{ asset(project.picture) }}" alt="">
-	{% if project.urlGit != null %}
-		<a href="{{ project.urlGit }}" target="_blank">Git du projet</a>
-	{% endif %}
-	{% if project.urlVideo != null %}
-		<a href="{{ project.urlVideo }}" target="_blank">Video du projet</a>
-	{% endif %}
-	{% if project.userId.id == app.user.id %}
-		<a href="{{ path('app_project_delete', {id: project.id}) }}">Supprimer ton projet</a>
-	{% endif %}
+	<div class="project-body">
+		<div class="project-presentation">
+			<img class="project-picture" src="{{ asset(project.picture) }}" alt="">
+			<div class="project-info">
+				<h1>{{ project.title }}</h1>
+				<p>Réalisé par {{ project.userId.name }}</p>
+				{% if project.urlGit != null %}
+					<a href="{{ project.urlGit }}" target="_blank">Git du projet</a>
+				{% endif %}
+			</div>
+		</div>
+		<div class="project-data">
+			<h2 class="project-desc">Description</h2>
+			<p>{{ project.description }}</p>
+			{% if project.urlVideo != null %}
+				<div class="project-video">
+					<h2>Video presentation</h2>
+					<a href="{{ project.urlVideo }}" target="_blank"><p>Video du projet</p></a>
+				</div>
+			{% endif %}
+		</div>
+		<div class="project-comments-section">
+			{% if app.user == true %}
+				<h2>Ajouter un Commentaire</h2>
+				{{ form(commentForm) }}
+			{% endif %}
+		
+			<div class="project-comments">
+				<h2>Commentaries</h2>
+				{% for comment in comments %}
+					<div class="project-comment">
+						<p class="project-comment-name">{{ comment.name }}</p>
+						<p class="project-comment-desc">{{ comment.description }}</p>
+					</div>
+				{% endfor %}
+			</div>
+			{% if app.user == true %}
+				{% if project.userId.id == app.user.id %}
+					<a class="project-delete" href="{{ path('app_project_delete', {id: project.id}) }}">Supprimer ton projet</a>
+				{% endif %}
+			{% endif %}
+		</div>
+		<a class="projects-back" href="{{ path('app_project') }}">Retourner à la liste des projets</a>
+	</div>
 
-	<h2>Ajouter un Commentaire</h2>
-	{{ form(commentForm) }}
 
-		{% for comment in comments %}
-			<p>{{ comment.name }}</p>
-			<p>{{ comment.description }}</p>
-		{% endfor %}
+{% endblock %}
 
-		<a href="{{ path('app_project') }}">Retourner à la liste des projets</a>
-	{% endblock %}
+
+
+
