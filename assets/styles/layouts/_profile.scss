@@ -1,15 +1,15 @@
 .main-profile {
   padding: 1em;
-  max-width: 1200px;
-  height: 100vh;
+  max-width: 900px;
   margin: 0 auto;
 }
 
 .header-profile {
+  background-color: #FFFFFF;
+  padding: 1em;
   @include flex-row;
   @include center-align;
   justify-content: space-around;
-  margin-bottom: 200px;
   .container-header {
     @include flex-column;
     p {
@@ -24,11 +24,51 @@
 }
 
 .edit-container {
-  @include flex-center-justify;
+  @include flex-row;
+  @include center-justify;
+  gap: 15px;
 }
 
 .profile {
   .title {
     padding: 1em;
+  }
+}
+
+.socials-profile {
+  img {
+    width: 30px;
+  }
+}
+
+.projects-profile {
+  padding: 2em;
+  overflow: scroll;
+  @include flex-row;
+  gap: 15px;
+
+  .project {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 15px;
+    img {
+      border-radius: 15px 15px 0 0;
+      width: 100%;
+    }
+    width: 250px;
+    height: 300px;
+    &-container {
+      padding: 1em;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .header-profile {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+  .edit-container {
+    flex-direction: column;
+    @include center-align;
   }
 }
