@@ -1,0 +1,94 @@
+.project-body {
+    padding: 1em;
+    width: 80%;
+    margin: 0 auto;
+    @include flex-column;
+    .project-presentation {
+        margin-bottom: 30px;
+        @include flex-row;
+        @include xl {
+            @include flex-column;
+        }
+        gap: 50px;
+        @include center-align;
+        .project-picture {
+            width: 600px;
+        }
+        .project-info {
+            @include xl {
+                text-align: center
+            }
+            .project-title {
+                font-size: 36px;
+                font-weight: lighter;
+            }
+            .project-git {
+                @include flex-row;
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
+                @include xl {
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+    .project-data {
+        .project-desc{
+            @include xl {
+                text-align: center
+            }
+        }
+        p {
+            font-size: 18px;
+            font-weight: lighter;
+            margin-bottom: 30px;
+            width: 70%;
+            @include xl {
+                text-align: center;
+                margin: 0 auto;
+                margin-bottom: 30px;
+            }
+        }
+        .project-video {
+            a {
+                p{
+                    color: $c--primary;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    .project-comments {
+        width: 80%;
+        margin: 0 auto;
+        @include xl {
+            text-align: center
+        }
+        .project-comment-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: $c--grey;
+        }
+        .project-comment-desc {
+                font-size: 18px;
+                font-weight: lighter;
+                margin-bottom: 30px;
+        }
+    }
+    .project-delete {
+        color: $c--primary;
+        border: 2px solid $c--primary;
+        padding: 1rem 1.5rem;
+        border-radius: 10px;
+    }
+    .projects-back {
+        color: $c--grey;
+        border: 2px solid $c--grey;
+        padding: 1rem 1.5rem;
+        margin-top: 40px;
+        width: fit-content;
+        border-radius: 10px;
+    }
+}
