@@ -70,7 +70,7 @@ class Technos
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): String
     {
         return $this->label;
     }

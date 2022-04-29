@@ -93,8 +93,8 @@ class ProjectController extends AbstractController
             $manager->flush();
 
 
+            return $this->redirectToRoute('app_project', [], 200);
 
-            return $this->redirectToRoute('app_project');
         }
 
         return $this->renderForm('project/new.html.twig', [
@@ -104,12 +104,12 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/project/{id}/delete', name: 'app_project_delete')]
-    public function delete(Request $request, Project $project, EntityManagerInterface $manager): Response
+    public function delete(Project $project, EntityManagerInterface $manager, $id): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
-            $manager->remove($project);
-            $manager->flush();
-        }
-        return $this->redirectToRoute('app_user_profile');
+        $project->getId();
+        $manager->remove($project);
+        $manager->flush();
+
+        return $this->redirectToRoute('app_user_profile', ['id' => $id]);
     }
 }
