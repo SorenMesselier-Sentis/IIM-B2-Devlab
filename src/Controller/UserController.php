@@ -26,7 +26,6 @@ class UserController extends AbstractController
         ]);
     }
     
-    #[Route('/user/{id}', name: 'app_user_profile')]
     public function show(User $user, $id, ProjectRepository $projectRepository): Response
     {
         $projects = $projectRepository->findBy(['user_id' => $user]);
@@ -35,8 +34,6 @@ class UserController extends AbstractController
             'projects' => $projects,
         ]);
     }
-
-
 
     /* -------------------------------------------------------------------------- */
     /*                             Edite user profile                             */
