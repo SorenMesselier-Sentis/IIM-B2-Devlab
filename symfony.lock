@@ -268,7 +268,7 @@
         }
     },
     "symfony/mime": {
-        "version": "v6.0.7"
+        "version": "v6.0.8"
     },
     "symfony/monolog-bridge": {
         "version": "v6.0.3"

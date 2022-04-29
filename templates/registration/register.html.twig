@@ -32,15 +32,35 @@
                 {{ form_label(registrationForm.grade, null, {'label': 'School year :'}) }}
                 {{ form_widget(registrationForm.grade, {'attr': {'class' : 'container-form'}}) }}
             </div>
+            <h2>Social media</h2>
             <div class="container-register">
                 {{ form_label(registrationForm.git, null, {'label': 'Your Git :'}) }}
                 {{ form_widget(registrationForm.git, {'attr': {'class' : 'container-form'}}) }}
+            </div>
+            <div class="container-register">
+                {{ form_label(registrationForm.linkedin, null, {'label': 'Your Linkedin :'}) }}
+                {{ form_widget(registrationForm.linkedin, {'attr': {'class' : 'container-form'}}) }}
+            </div>
+            <div class="container-register">
+                {{ form_label(registrationForm.instagram, null, {'label': 'Your Instagram :'}) }}
+                {{ form_widget(registrationForm.instagram, {'attr': {'class' : 'container-form'}}) }}
+            </div>
+            <div class="container-register">
+                {{ form_label(registrationForm.twitter, null, {'label': 'Your Twitter :'}) }}
+                {{ form_widget(registrationForm.twitter, {'attr': {'class' : 'container-form'}}) }}
+            </div>
+            <div class="container-register">
+                {{ form_label(registrationForm.dribbble, null, {'label': 'Your Dribbble :'}) }}
+                {{ form_widget(registrationForm.dribbble, {'attr': {'class' : 'container-form'}}) }}
+            </div>
+            <div class="container-register">
+                {{ form_label(registrationForm.stackOverflow, null, {'label': 'Your StackOverflow :'}) }}
+                {{ form_widget(registrationForm.stackOverflow, {'attr': {'class' : 'container-form'}}) }}
             </div>
             <div class="footer-form">
                 {{ form_row(registrationForm.agreeTerms, {
                     label: 'Accepter les termes'
                 }) }}
-
                 <button type="submit" class="submit">Register</button>
             </div>
             {{ form_end(registrationForm) }}

@@ -3,16 +3,33 @@
 {% block title %}Hello ProjectController!{% endblock %}
 
 {% block body %}
-<h1>Les Projets</h1>
-
+<div class="header-projects">
+    <h1 class="title head">Les Projets</h1>
+</div>
+<div class="body-projects">
 {% for project in projects %}
-    <p>{{ project.title }}</p>
-    <p>{{ project.description }}</p>
-    <p>{{ project.userid }}</p>
-    <p>{{ project.createdAt | date('Y/m/d') }}</p>
-    <img src="{{ asset(project.picture) }}" alt="">
+
+    <div class="project-card">
+        <div class="project-card-data">
+            <div class="project-id-and-img">
+                <p class="project-id">{{ project.id }}.</p>
+                <img class="project-card-img" src="{{ asset(project.picture) }}" alt="">
+            </div>
+            <div class="project-informations">
+                <p class="project-card-owner title">By {{ project.userid.name }}</p>
+                <p class="project-card-title">{{ project.title }}</p>
+                <p class="project-card-description">{{ project.description[:70] ~ '...' }}</p>
+            </div>
+        </div>
+        <div class="project-card-links">
+            <a class="project-show" href="{{ path('app_project_show', {id: project.id}) }}">Voir le Projet</a>
+            {% if project.urlGit == true %}
+                <a class="project-git" href="{{ project.urlGit }}"><img src="{{ asset('assets/logo/github-black.svg') }}" alt="Github Logo"></a>
+            {% endif %}
+        </div>
+    </div>
 {# Ajout de collabo au projet si projet de grp #}
-    <a href="{{ path('app_project_show', {id: project.id}) }}">Voir le Projet</a>
 {% endfor %}
+</div>
 
 {% endblock %}

@@ -52,3 +52,9 @@
   align-items: center;
   justify-content: center;
 }
+
+@mixin xl {
+  @media screen and (max-width: 1200px) {
+      @content;
+  }
+}

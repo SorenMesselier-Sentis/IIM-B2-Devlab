@@ -11,14 +11,53 @@
                 {% else %}
                     <h1 class="title sub"> {{ user.name }}</h1>
                 {% endif %}
+                <h4> {{ user.email }} </h4>
+                <p>{{ user.isAsso }}</p>
                 <p>A{{ user.grade }}</p>
+                <p>{{ user.description }}</p>
             </div>
             <img src="{{ user.picture }}" alt="profile photo">
         </div>
+        
         <div class="edit-container">
             {% if app.user.id == user.id %}
                 <a class="btn" href="{{ path('app_user_profile_edit', {id:app.user.id}) }}">Edit ton profil</a>
             {% endif %}
         </div>
+        
+        <p>Skills</p>
+        {% for skill in user.skills %}
+            <p>{{ skill.label }}</p>
+        {% endfor %}
+       
+        <p>All Project</p>
+        {% for project in projects %}
+            <div class="project" style="background-color: red" >
+                <p> {{ project.title }} and created at {{ project.CreatedAt | date("d/m/Y") }}</p>
+                <img src=" {{ project.picture }} " alt="">
+                <p> {{ project.description }} </p>
+
+                {% for techno in project.technos %}
+                    <p> {{ techno.label }} </p>
+                {% endfor %}
+                <a href="{{ project.urlgit }}" target="_blanck">Git Hub</a>
+                <a href="{{ project.urlvideo }}" target="_blanck">video</a>
+            </div>
+            <a href="{{ path('app_project_edit', {id:project.id}) }}">éditer un project</a>
+        {% endfor %}
+
+        {% for profil in user %}
+            <p>socials media</p>
+            <a href="{{  profil.git }}" target="_blanck" >Git Hub</a>
+            <a href="{{  profil.linkedin }}"target="_blanck">linkedin</a>
+            <a href="{{  profil.instagram }}"target="_blanck">instagram</a>
+            <a href="{{  profil.twitter }}"target="_blanck">twitter</a>
+            <a href="{{  profil.dribbble }}"target="_blanck">dribbble</a>
+            <a href="{{  profil.stackOverflow }}"target="_blanck">stackOverflow</a>
+        {% endfor %}
+        
+        <p>Autre</p>
+        <a href="{{ path('app_user_profile_edit', {id:app.user.id}) }}">Edit ton profil</a>
+        <a href="{{ path('app_project_new', {id: app.user.id}) }}">Ajouter un projet</a>
     </div>
 {% endblock %}
