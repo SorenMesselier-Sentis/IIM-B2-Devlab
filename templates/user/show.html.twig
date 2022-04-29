@@ -1,9 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}Hello {{ app.user.name }} !{% endblock %}
 
 {% block body %}
-<h1>Ton Profil</h1>
-<a href="{{ path('app_user_profile_edit', {id:app.user.id}) }}">Edit ton profil</a>
-
+    <div class="main-profile">
+        <div class="header-profile">
+            <div class="container-header">
+                {% if app.user.id == user.id %}
+                    <h1 class="title head">Ton profil {{ app.user.name }}</h1>
+                {% else %}
+                    <h1 class="title sub"> {{ user.name }}</h1>
+                {% endif %}
+                <p>A{{ user.grade }}</p>
+            </div>
+            <img src="{{ user.picture }}" alt="profile photo">
+        </div>
+        <div class="edit-container">
+            {% if app.user.id == user.id %}
+                <a class="btn" href="{{ path('app_user_profile_edit', {id:app.user.id}) }}">Edit ton profil</a>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}

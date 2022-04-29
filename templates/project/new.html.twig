@@ -3,13 +3,36 @@
 {% block title %}Hello ProjectNew!{% endblock %}
 
 {% block body %}
-{{ form_start(projectFormNew) }}
-    {{ form_row(projectFormNew.title) }}
-    {{ form_row(projectFormNew.picture) }}
-    {{ form_row(projectFormNew.description) }}
-    {{ form_row(projectFormNew.url_git) }}
-    {{ form_row(projectFormNew.url_video) }}
-    {{ form_row(projectFormNew.technos) }}
-{{ form_end(projectFormNew) }}
-	<a href="{{ path('app_user_profile', {id:app.user.id}) }}">Retourner au profil</a>
+<div class="form-bg">
+    <h1 class="title head">ajoute ton projet !</h1>
+    <div class="form create-project">
+        {{ form_start(projectFormNew) }}
+        <div class="container-create">
+            {{ form_label(projectFormNew.title, null, {'label': 'title of the project :'}) }}
+            {{ form_widget(projectFormNew.title, {'attr': {'class' : 'container-form'}}) }}
+        </div>
+        <div class="container-create">
+            {{ form_label(projectFormNew.picture, null, {'label': 'picture :'}) }}
+            {{ form_widget(projectFormNew.picture, {'attr': {'class' : 'container-form'}}) }}
+        </div>
+        <div class="container-create">
+            {{ form_label(projectFormNew.description, null, {'label': 'description of the project :'}) }}
+            {{ form_widget(projectFormNew.description, {'attr': {'class' : 'container-form'}}) }}
+        </div>
+        <div class="container-create">
+            {{ form_label(projectFormNew.url_git, null, {'label': 'github repository url :'}) }}
+            {{ form_widget(projectFormNew.url_git, {'attr': {'class' : 'container-form'}}) }}
+        </div>
+        <div class="container-create">
+            {{ form_label(projectFormNew.url_video, null, {'label': 'urls of videos'}) }}
+            {{ form_widget(projectFormNew.url_video, {'attr': {'class' : 'container-form'}}) }}
+        </div>
+        <div class="container-create">
+            {{ form_label(projectFormNew.technos, null, {'label': 'techs:'}) }}
+            {{ form_widget(projectFormNew.technos, {'attr': {'class' : 'container-form'}}) }}
+        </div>
+        {{ form_end(projectFormNew) }}
+    </div>
+    <a class="btn" href="{{ path('app_user_profile', {id:app.user.id}) }}">Retourner au profil</a>
+</div>
 {% endblock %}
