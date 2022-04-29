@@ -12,3 +12,13 @@
     content: ".";
   }
 }
+
+.submit {
+  cursor: pointer;
+  border: none;
+  background-color: $c--primary;
+  padding: 0.5em 1em;
+  border-radius: 10px;
+  font-size: 16px;
+  color: $c--white;
+}

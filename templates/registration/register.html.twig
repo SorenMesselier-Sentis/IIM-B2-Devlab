@@ -3,34 +3,47 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <div class="form-bg">
+        <div class="form register">
+            <img class="cid-logo" src="{{ asset('assets/logo/cid_logo.png') }}" alt="logo cid">
+            <h1 class="title head">Register</h1>
+            {{ form_start(registrationForm) }}
+            <div class="container-register">
+                {{ form_label(registrationForm.name, null, {'label': 'First name :'}) }}
+                {{ form_widget(registrationForm.name, {'attr': {'class' : 'container-form'}}) }}
+            </div>
+            <div class="container-register">
+                {{ form_label(registrationForm.surname, null, {'label': 'Surname :'}) }}
+                {{ form_widget(registrationForm.surname, {'attr': {'class' : 'container-form'}}) }}
+            </div>
+            <div class="container-register">
+                {{ form_label(registrationForm.email, null, {'label': 'Email :'}) }}
+                {{ form_widget(registrationForm.email, {'attr': {'class' : 'container-form'}}) }}
+            </div>
+            <div class="container-register">
+                {{ form_label(registrationForm.plainPassword, null, {'label': 'Password :'}) }}
+                {{ form_widget(registrationForm.plainPassword, {'attr': {'class' : 'container-form'}}) }}
+            </div>
+            <div class="container-register">
+                {{ form_label(registrationForm.picture, null, {'label': 'Picture :'}) }}
+                {{ form_widget(registrationForm.picture, {'attr': {'class' : 'container-form'}}) }}
+            </div>
+            <div class="container-register">
+                {{ form_label(registrationForm.grade, null, {'label': 'School year :'}) }}
+                {{ form_widget(registrationForm.grade, {'attr': {'class' : 'container-form'}}) }}
+            </div>
+            <div class="container-register">
+                {{ form_label(registrationForm.git, null, {'label': 'Your Git :'}) }}
+                {{ form_widget(registrationForm.git, {'attr': {'class' : 'container-form'}}) }}
+            </div>
+            <div class="footer-form">
+                {{ form_row(registrationForm.agreeTerms, {
+                    label: 'Accepter les termes'
+                }) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.name, {
-            label: 'Nom'
-        }) }}
-        {{ form_row(registrationForm.surname, {
-            label: 'Prenom'
-        }) }}
-        {{ form_row(registrationForm.email, {
-            label: 'Email'
-        }) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.picture, {
-            label: 'Photo de profil'
-        }) }}
-        {{ form_row(registrationForm.grade, {
-            label: 'Niveau d\'étude'
-        }) }}
-        {{ form_row(registrationForm.git, {
-            label: 'Profil GitHub'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms, {
-            label: 'Accepter les termes'
-        }) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                <button type="submit" class="submit">Register</button>
+            </div>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
 {% endblock %}

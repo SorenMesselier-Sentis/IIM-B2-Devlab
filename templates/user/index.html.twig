@@ -1,14 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}Nos étudiants{% endblock %}
 
 {% block body %}
-<h1>Utilisateurs</h1>
-
-{% for user in users %}
-    <p>{{ user.name }}</p>
-    {# target le bon lien pour chaque profils #}
-    {# <a href="{{ path('app_user_profile', {id:app.user.id}) }}">Profil de {{ user.name }}</a> #}
-{% endfor %}
-
+<div class="main-users">
+    <div class="header-users">
+        <h1 class="title head">Nos Etudiants</h1>
+    </div>
+    <div class="user-cards">
+        {% for user in users %}
+            <div class="user-card">
+                <img src="{{ user.picture }}" alt="user photo">
+                <div>
+                    <h4 class="title">{{ user.name }}</h4>
+                    <p>A{{ user.grade }}</p>
+                    <a class="btn" href="{{ path('app_user_profile', {id:user.id}) }}">voir son profile</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

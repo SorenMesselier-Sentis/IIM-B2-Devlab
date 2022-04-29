@@ -1,17 +1,17 @@
 <nav>
 	<header>
 		<ul class="main-nav">
-			<img class="cid-logo" src="/assets/logo/cid_logo.png">
+			<img class="cid-logo nav" src="/assets/logo/cid_logo.png">
 			<li><a href="{{ path('app_home')}}">Accueil</a></li>
-			<li><a href="{{ path('app_users') }}">Membres</a></li>
+			<li><a href="{{ path('app_news') }}">News</a></li>
 			<li><a href="{{ path('app_project') }}">Projets</a></li>
+			<li><a href="{{ path('app_users') }}">Etudiants</a></li>
 			<li><a href="#">Faq</a></li>
 		</ul>
 		<div class="nav-profile">
 			<img src="/assets/logo/profile.png" alt="profile logo for user">
 			<ul>
 				{% if app.user %}
-					<li><p>Hello {{ app.user.name }} !</p></li>
 					<li><a href="{{ path('app_user_profile', {id:app.user.id}) }}">Profil</a></li>
 					<li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
 				{% else %}

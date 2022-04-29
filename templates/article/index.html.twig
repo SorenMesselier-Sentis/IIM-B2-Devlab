@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}News{% endblock %}
+
+{% block body %}
+    <div class="header-news">
+        <h1 class="title head">News</h1>
+    </div>
+    <div class="news-wrapper">
+        {% for article in news %}
+            <div class="wrapper-article">
+                <img src="https://imgs.search.brave.com/sZ4tWVMveiFONRivfzhLq6yP6lV2ep5L-gjWa1NfiN0/rs:fit:1200:1080:1/g:ce/aHR0cHM6Ly93d3cu/YW5pbWF0aW9uc291/cmNlLm9yZy9zaXRl/c19jb250ZW50L2xp/bG9fc3RpdGNoL2lt/Z19zY3JlZW5zaG90/LzE2NTEzMC5qcGc" alt="news banner">
+                <div class="article-content">
+                    <h1>{{ article.title }}</h1>
+                    <a class="btn" href="{{ path('app_article', {'id' : article.id}) }}">go to article</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
