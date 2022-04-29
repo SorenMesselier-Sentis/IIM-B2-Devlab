@@ -7,6 +7,11 @@
 
 {% for user in users %}
     <p>{{ user.name }}</p>
+    <p> {{ user.grade }} </p>
+    <p>{{ user.description }}</p>
+    <img src="{{ user.picture }} " alt="">
+    <a href=" {{ path('app_user_profile', {id: app.user.id}) }} ">See profil</a>
+
     {# target le bon lien pour chaque profils #}
     {# <a href="{{ path('app_user_profile', {id:app.user.id}) }}">Profil de {{ user.name }}</a> #}
 {% endfor %}

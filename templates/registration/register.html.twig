@@ -6,30 +6,61 @@
     <h1>Register</h1>
 
     {{ form_start(registrationForm) }}
+    
         {{ form_row(registrationForm.name, {
             label: 'Nom'
         }) }}
+
         {{ form_row(registrationForm.surname, {
             label: 'Prenom'
         }) }}
+
         {{ form_row(registrationForm.email, {
             label: 'Email'
         }) }}
+
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
+
+
         {{ form_row(registrationForm.skills, {
             label: 'select your skills'
         }) }}
+
         {{ form_row(registrationForm.picture, {
             label: 'Photo de profil'
         }) }}
+
         {{ form_row(registrationForm.grade, {
             label: 'Niveau d\'étude'
         }) }}
+
+        <h2>Social media</h2>
         {{ form_row(registrationForm.git, {
             label: 'Profil GitHub'
         }) }}
+
+        {{ form_row(registrationForm.linkedin, {
+            label: 'Profil Linkedin'
+        }) }}
+
+        {{ form_row(registrationForm.instagram, {
+            label: 'Profil Instagram'
+        }) }}
+
+        {{ form_row(registrationForm.twitter, {
+            label: 'Profil Twitter'
+        }) }}
+
+        {{ form_row(registrationForm.dribbble, {
+            label: 'Profil Dribbble'
+        }) }}
+        
+        {{ form_row(registrationForm.stackOverflow, {
+            label: 'Profil Stack Overflow'
+        }) }}
+
         {{ form_row(registrationForm.agreeTerms, {
             label: 'Accepter les termes'
         }) }}

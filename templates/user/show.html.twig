@@ -31,26 +31,25 @@
         {% for techno in project.technos %}
             <p> {{ techno.label }} </p>
         {% endfor %}
+            <a href="{{ project.urlgit }}" target="_blanck">Git Hub</a>
+            <a href="{{ project.urlvideo }}" target="_blanck">video</a>
 
         </div>
-        <a href="#">supprimer un project</a>
+        <a href="{{ path('app_user_delete', {id:app.user.id}) }}">supprimer un project</a>
         <a href="#">éditer un project</a>
     {% endfor %}
 
 {# foreach #}
 <p>socials media</p>
-<a href="{{  user.git }}">Git Hub</a>
-<a href="{{  user.linkedin }}">linkedin</a>
-<a href="{{  user.instagram }}">instagram</a>
-<a href="{{  user.twitter }}">twitter</a>
-<a href="{{  user.dribbble }}">dribbble</a>
-<a href="{{  user.stackOverflow }}">stackOverflow</a>
+<a href="{{  user.git }}" target="_blanck" >Git Hub</a>
+<a href="{{  user.linkedin }}"target="_blanck">linkedin</a>
+<a href="{{  user.instagram }}"target="_blanck">instagram</a>
+<a href="{{  user.twitter }}"target="_blanck">twitter</a>
+<a href="{{  user.dribbble }}"target="_blanck">dribbble</a>
+<a href="{{  user.stackOverflow }}"target="_blanck">stackOverflow</a>
 
-<p> All project collaborations</p>
-
+<p>Autre</p>
 <a href="{{ path('app_user_profile_edit', {id:app.user.id}) }}">Edit ton profil</a>
-<a href="#">Publiée un project</a>
-
-<a href="#">supprimer son profils</a>
+<a href="{{ path('app_project_new', {id: app.user.id}) }}">Ajouter un projet</a>
 
 {% endblock %}

@@ -7,11 +7,26 @@
 {{ form_start(EditUserForm) }}
     {{ form_row(EditUserForm.name) }}
     {{ form_row(EditUserForm.surname) }}
+    {{ form_row(EditUserForm.email) }}
     {{ form_row(EditUserForm.grade) }}
+    {{ form_row(EditUserForm.picture) }}
+    {{ form_row(EditUserForm.description) }}
+
+    <h2>Skills</h2>
+    {{ form_row(EditUserForm.skills) }}
+
+
+    <h2>Url</h2>
     {{ form_row(EditUserForm.git) }}
+    {{ form_row(EditUserForm.linkedin) }}
+    {{ form_row(EditUserForm.instagram) }}
+    {{ form_row(EditUserForm.twitter) }}
+    {{ form_row(EditUserForm.dribbble) }}
+    {{ form_row(EditUserForm.stackOverflow) }}
+
 {{ form_end(EditUserForm) }}
 
-{% if app.user %}
-    <a href="{{ path('app_project_new', {id: app.user.id}) }}">Ajouter un projet</a>
-{% endif %}
+<a href="{{ path('app_user_delete', {id: app.user.id}) }}">supprimer son profils</a>
+<a href="{{ path('app_user_profile', {id: app.user.id}) }}">Retour </a>
+
 {% endblock %}

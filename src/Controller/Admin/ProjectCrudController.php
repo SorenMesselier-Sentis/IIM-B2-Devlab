@@ -33,8 +33,14 @@ class ProjectCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            FormField::addTab('Information du projet'),
             IdField::new('id')->setDisabled(),
+            AssociationField::new('user_id'),
             TextField::new('title'),
+            TextEditorField::new('description'),
+            AssociationField::new('technos')->hideOnIndex(),
+            FormField::addTab('Assets du projet'),
+            UrlField::new('urlVideo')->hideOnIndex(),
             ImageField::new('picture')
             ->setUploadDir('/public/uploads/projects')
             ->setUploadedFileNamePattern('/uploads/projects/[randomhash].[extension]')
@@ -43,13 +49,8 @@ class ProjectCrudController extends AbstractCrudController
                     'accept' => 'image/jpeg, image/png, image/jpg'
                 ]
             ]),
-            UrlField::new('urlGit'),
-            UrlField::new('urlVideo'),
-            TextEditorField::new('description'),
-            AssociationField::new('user_id'),
-
-            AssociationField::new('technos'),
-
+            FormField::addTab('Urls du projet'),
+            UrlField::new('urlGit')->hideOnIndex(),
         ];
     }
 

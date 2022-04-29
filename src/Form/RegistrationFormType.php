@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class RegistrationFormType extends AbstractType
@@ -25,27 +26,25 @@ class RegistrationFormType extends AbstractType
     {
         $builder
 
-            ->add('email')
-            ->add('name')
-            ->add('surname')
-            ->add('grade')
-            ->add('git')
-            ->add('picture')
-
-            ->add('skills', EntityType::class, [
-                'class' => 'App\Entity\Skill',
-                'multiple' => true,
-                'expanded' => false,
-            ])
-
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
+            ->add('name', TextType::class, [
+                'label' => 'First Name',
+                'attr' => [
+                    'placeholder' => 'First Name',
+                ],
+                'constraints' => [
+                    new Insult(/*[
+                        'message' => 'This field contains offensive term.'
+                    ]*/),
+                    new NotBlank([
+                        'message' => 'Please enter your First Name',
+                    ]),
+                ],
             ])
 
             ->add('surname', TextType::class, [
-                'label' => 'Surname',
+                'label' => 'Laste Name',
                 'attr' => [
-                    'placeholder' => 'Surname',
+                    'placeholder' => 'Laste Name',
                 ],
 
                 'constraints' => [
@@ -63,9 +62,10 @@ class RegistrationFormType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Email',
                 ],
+
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter an email',
+                        'message' => 'Please enter a email',
                     ]),
                 ],
             ])
@@ -74,7 +74,12 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'label' => 'Password',
+                'attr' => [
+                    'autocomplete' => 'new-password',
+                    'placeholder' => 'Password',
+
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password who containe 6 characters',
@@ -87,6 +92,19 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+
+            ->add('skills', EntityType::class, [
+                'label' => 'Skills',
+                'class' => 'App\Entity\Skill',
+                'multiple' => true,
+                'expanded' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a skill',
+                    ]),
+                ],
+            ])
+
 
             ->add('picture', FileType::class, [
                 'label' => 'Ajouter votre photo de profils ',
@@ -113,16 +131,53 @@ class RegistrationFormType extends AbstractType
             ->add('grade')
 
             ->add('git', UrlType::class, [
-                'label' => 'Git',
+                'label' => 'GitHub',
                 'attr' => [
-                    'placeholder' => 'Git',
+                    'placeholder' => 'GitHub',
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a git',
+                        'message' => 'Please enter your GitHub',
                     ]),
                 ],
             ])
+
+            ->add('linkedin', UrlType::class, [
+                'label' => 'Linkedin',
+                'attr' => [
+                    'placeholder' => 'Linkedin',
+                ],
+
+            ])
+
+            ->add('instagram', UrlType::class, [
+                'label' => 'Instagram',
+                'attr' => [
+                    'placeholder' => 'Instagram',
+                ],
+            ])
+
+            ->add('twitter', UrlType::class, [
+                'label' => 'Twitter',
+                'attr' => [
+                    'placeholder' => 'Twitter',
+                ],
+            ])
+
+            ->add('dribbble', UrlType::class, [
+                'label' => 'Dribbble',
+                'attr' => [
+                    'placeholder' => 'Dribbble',
+                ],
+            ])
+
+            ->add('stackOverflow', UrlType::class, [
+                'label' => 'StackOverflow',
+                'attr' => [
+                    'placeholder' => 'StackOverflow',
+                ],
+            ])
+
 
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
