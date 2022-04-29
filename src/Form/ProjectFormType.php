@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+
 class ProjectFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -64,6 +65,11 @@ class ProjectFormType extends AbstractType
                 ],
             ])
             ->add('technos')
+            ->add('file', FileType::class, [
+                'mapped' => false,
+                'label' => 'Prend en compte seulement les fichiers compressés',
+                'required' => false
+            ])
             ->add('envoyer', SubmitType::class)
         ;
     }

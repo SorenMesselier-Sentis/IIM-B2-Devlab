@@ -2,18 +2,22 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Project;
 use App\Entity\Comments;
-use App\Entity\User;
 use App\Form\CommentFormType;
-use App\Form\ProjectFormType;
+use App\Service\FileUploader;
+use App\Form\ProjectFormType;   
 use App\Repository\ProjectRepository;
 use App\Repository\CommentsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\Exception\NoFileException;
 
 class ProjectController extends AbstractController
 {
@@ -27,7 +31,7 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/project/{id}', name: 'app_project_show')]
-    public function show(Request $request, Project $project, EntityManagerInterface $manager, CommentsRepository $commentsRepository, ProjectRepository $projectRepository, $id): Response
+    public function show(Request $request, Project $project, EntityManagerInterface $manager, CommentsRepository $commentsRepository, FileUploader $fileUploader,ProjectRepository $projectRepository, $id): Response
     {
         $comments = $commentsRepository->findBy(['project_id' => $project]);
         $comment = new Comments();
@@ -36,9 +40,22 @@ class ProjectController extends AbstractController
         $project = $projectRepository->find($id);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            
             $comment->setProjectId($project);
+
+            
+            $uploadFile = $form->get('file')->getData();
+            if($uploadFile){
+                $uploadFileName = $fileUploader->upload($uploadFile);
+                $project->setFile($uploadFileName);
+            }
+
             $manager->persist($comment);
             $manager->flush();
+
+
+
 
             $this->addFlash('success', 'Votre commentaire a bien été ajouté');
             return $this->redirectToRoute('app_project_show', ['id' => $project->getId()]);
@@ -52,19 +69,32 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/project/{id}/newProject', name: 'app_project_new')]
-    public function new(Request $request, EntityManagerInterface $manager, User $user): Response
-    {
+    public function new(Request $request, EntityManagerInterface $manager, User $user, SluggerInterface $slugger, FileUploader $fileUploader): Response
+    {   
+        
         $project = new Project();
         $form = $this->createForm(ProjectFormType::class, $project);
         $form->handleRequest($request);
         $user = $this->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
             $project->setUserId($user);
+    
+
+            $uploadFile = $form->get('file')->getData();
+            if($uploadFile){
+                $uploadFileName = $fileUploader->upload($uploadFile);
+                $project->setFile($uploadFileName);
+            }
+
             $manager->persist($project);
             $manager->flush();
 
+
             return $this->redirectToRoute('app_project', [], 200);
+
         }
 
         return $this->renderForm('project/new.html.twig', [
