@@ -1,17 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}Modifier ton profile{% endblock %}
 
 {% block body %}
-<h1>Edit ton profil</h1>
-{{ form_start(EditUserForm) }}
-    {{ form_row(EditUserForm.name) }}
-    {{ form_row(EditUserForm.surname) }}
-    {{ form_row(EditUserForm.grade) }}
-    {{ form_row(EditUserForm.git) }}
-{{ form_end(EditUserForm) }}
-
-{% if app.user %}
-    <a href="{{ path('app_project_new', {id: app.user.id}) }}">Ajouter un projet</a>
-{% endif %}
+    <div class="form-bg profile">
+        <h1 class="title head">modifie ton profil</h1>
+        <div class="form edit-profile">
+            {{ form_start(EditUserForm) }}
+            <div class="container-edit">
+                {{ form_label(EditUserForm.name, null, {'label': 'First name :'}) }}
+                {{ form_widget(EditUserForm.name, {'attr': {'class' : 'container-form'}}) }}
+            </div>
+            <div class="container-edit">
+                {{ form_label(EditUserForm.surname, null, {'label': 'Surname :'}) }}
+                {{ form_widget(EditUserForm.surname, {'attr': {'class' : 'container-form'}}) }}
+            </div>
+            <div class="container-edit">
+                {{ form_label(EditUserForm.grade, null, {'label': 'Actual Grade :'}) }}
+                {{ form_widget(EditUserForm.grade, {'attr': {'class' : 'container-form'}}) }}
+            </div>
+            <div class="container-edit">
+                {{ form_label(EditUserForm.git, null, {'label': 'your github :'}) }}
+                {{ form_widget(EditUserForm.git, {'attr': {'class' : 'container-form'}}) }}
+            </div>
+        </div>
+        {% if app.user %}
+            <a class="btn" href="{{ path('app_project_new', {id: app.user.id}) }}">Ajouter un projet</a>
+        {% endif %}
+        <a href="{{ path('app_user_delete', {id: app.user.id}) }}">supprimer son profil</a>
+        <a href="{{ path('app_user_profile', {id: app.user.id}) }}">Retour</a>
+    </div>
 {% endblock %}
