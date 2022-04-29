@@ -15,9 +15,10 @@ class HomeController extends AbstractController
     {
         $articles = $newsRepository->findBy([], ['updated_at' => 'DESC'], 3 );
         $projects = $projectRepository->findBy([], ['updated_at' => 'DESC'], 3 );
+
         return $this->render('home/index.html.twig', [
-        'articles'=> $articles,
-        'projects'=> $projects,
+            'articles'=> $articles,
+            'projects'=> $projects,
         ]);
     }
 }

@@ -7,16 +7,14 @@
         <h1 class="title head">Welcome</h1>
     </div>
     <div class="container-cards">
-        <!-- replace by a for loop to get projects from database -->
         <div class="cards">
         {% for project in projects %}
             <div class="card-wrapper">
                 <h3 class="title sub">By {{ project.userId }}</h3>
                 <p>{{ project.title }}</p>
-                <img class="img-card" href="{{ asset(project.picture) }}">
+                <img class="img-card" src="{{ project.picture }}">
             </div>
         {% endfor %}
-            <!--- end loop-->
         </div>
         <a class="btn" href="">go to projects</a>
     </div>
@@ -38,12 +36,11 @@
         <div class="cards">
             {% for article in articles %}
                 <div class="card-wrapper">
-                    <img class="img-card" href="{{ asset(article.picture) }}">
-                    <p>{{ article.title }}</a>
+                    <img class="img-card" src="{{ article.picture }}">
+                    <p>{{article.title}}</a>
                 </div>
             {% endfor %}
         </div>
-        <!-- end loop -->
         <a class="btn" href="#">go to news</a>
     </div>
 {% endblock %}
