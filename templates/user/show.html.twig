@@ -12,11 +12,14 @@
 <img src="{{ user.picture }}" alt="">
 <p>{{ user.description }}</p>
 
-{# Twig section to see skills of the user  #}
 <p>Skills</p>
 {% for skill in user.skills %}
     <p>{{ skill.label }}</p>
 {% endfor %}
+
+
+{# Twig section to see skills of the user  #}
+
 
 
 {# foreach #}
@@ -35,18 +38,23 @@
             <a href="{{ project.urlvideo }}" target="_blanck">video</a>
 
         </div>
-        <a href="{{ path('app_user_delete', {id:app.user.id}) }}">supprimer un project</a>
-        <a href="#">éditer un project</a>
+        <a href="{{ path('app_project_edit', {id:project.id}) }}">éditer un project</a>
     {% endfor %}
 
 {# foreach #}
-<p>socials media</p>
-<a href="{{  user.git }}" target="_blanck" >Git Hub</a>
-<a href="{{  user.linkedin }}"target="_blanck">linkedin</a>
-<a href="{{  user.instagram }}"target="_blanck">instagram</a>
-<a href="{{  user.twitter }}"target="_blanck">twitter</a>
-<a href="{{  user.dribbble }}"target="_blanck">dribbble</a>
-<a href="{{  user.stackOverflow }}"target="_blanck">stackOverflow</a>
+
+    {% for profil in user %}
+
+        <p>socials media</p>
+        <a href="{{  profil.git }}" target="_blanck" >Git Hub</a>
+        <a href="{{  profil.linkedin }}"target="_blanck">linkedin</a>
+        <a href="{{  profil.instagram }}"target="_blanck">instagram</a>
+        <a href="{{  profil.twitter }}"target="_blanck">twitter</a>
+        <a href="{{  profil.dribbble }}"target="_blanck">dribbble</a>
+        <a href="{{  profil.stackOverflow }}"target="_blanck">stackOverflow</a>
+        
+    {% endfor %}
+
 
 <p>Autre</p>
 <a href="{{ path('app_user_profile_edit', {id:app.user.id}) }}">Edit ton profil</a>
