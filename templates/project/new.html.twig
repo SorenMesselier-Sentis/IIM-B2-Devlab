@@ -4,7 +4,10 @@
 
 {% block body %}
 <div class="form-bg">
-    <h1 class="title head">ajoute ton projet !</h1>
+    <div class="header-form">
+        <h1 class="title head">ajoute ton projet !</h1>
+        <a class="btn" href="{{ path('app_user_profile', {id:app.user.id}) }}">Retourner au profil</a>
+    </div>
     <div class="form create-project">
         {{ form_start(projectFormNew) }}
         <div class="container-create">
@@ -31,8 +34,8 @@
             {{ form_label(projectFormNew.technos, null, {'label': 'techs:'}) }}
             {{ form_widget(projectFormNew.technos, {'attr': {'class' : 'container-form'}}) }}
         </div>
+        {{ form_row(projectFormNew.envoyer, {'attr': {'class' : 'btn'}}) }}
         {{ form_end(projectFormNew) }}
     </div>
-    <a class="btn" href="{{ path('app_user_profile', {id:app.user.id}) }}">Retourner au profil</a>
 </div>
 {% endblock %}

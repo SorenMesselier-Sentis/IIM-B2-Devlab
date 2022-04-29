@@ -5,9 +5,15 @@
   height: 100vh;
   @include flex-column;
   @include center-align;
+  .header-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    @include center-align;
+  }
 }
 .form {
-  width: 40%;
+  width: 80%;
   padding: 1em;
   margin: 0 auto;
   @include flex-column;
@@ -41,6 +47,14 @@
     }
   }
 }
+
+.create-project {
+  .btn {
+    cursor: pointer;
+    margin: 20px;
+  }
+}
+
 .footer-form {
   gap: 15px;
   @include flex-column;
